@@ -1,70 +1,65 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿namespace EdiEngine.Runtime;
 
-namespace EdiEngine.Runtime
+public class EdiIntermediateEntity
 {
-    public class EdiIntermediateEntity
+    public EdiIntermediateEntity(EdiIntermediateEntity parent)
     {
-        public EdiIntermediateEntity(EdiIntermediateEntity parent)
+        Parent = parent;
+        Children = new List<EdiIntermediateEntity>();
+    }
+
+    public string Type { get; set; }
+    public string Name { get; set; }
+    public string E { get; set; }
+
+    public EdiIntermediateEntity Parent { get; private set; }
+    public List<EdiIntermediateEntity> Children { get; }
+
+    public TokenContextType EntityType
+    {
+        get
         {
-            Parent = parent;
-            Children = new List<EdiIntermediateEntity>();
-        }
-
-        public string Type { get; set; }
-        public string Name { get; set; }
-        public string E { get; set; }
-
-        public EdiIntermediateEntity Parent { get; private set; }
-        public List<EdiIntermediateEntity> Children { get; }
-
-        public TokenContextType EntityType
-        {
-            get
+            switch (Type)
             {
-                switch (Type)
-                {
-                    case "L":
-                        return TokenContextType.Loop;
+                case "L":
+                    return TokenContextType.Loop;
 
-                    case "S":
-                        return TokenContextType.Segment;
+                case "S":
+                    return TokenContextType.Segment;
 
-                    case "C":
-                        return TokenContextType.CompositeDataElement;
+                case "C":
+                    return TokenContextType.CompositeDataElement;
 
-                    case null:
-                        return TokenContextType.SimpleDataElement;
-
-                    default:
-                        throw new InvalidDataException($"Enexpected Type found in Json {Type}");
-                }
-            }
-        }
-
-        public override string ToString()
-        {
-            switch (EntityType)
-            {
-                case TokenContextType.SimpleDataElement:
-                    return E;
-
-                case TokenContextType.CompositeDataElement:
-                    return string.Join(EdiInterchange.DefaultCompositeSeparator, Children.Select(c => c.E));
+                case null:
+                    return TokenContextType.SimpleDataElement;
 
                 default:
-                    return base.ToString();
-
+                    throw new InvalidDataException($"Enexpected Type found in Json {Type}");
             }
         }
     }
 
-    public enum TokenContextType
+    public override string ToString()
     {
-        Loop,
-        Segment,
-        CompositeDataElement,
-        SimpleDataElement,
+        switch (EntityType)
+        {
+            case TokenContextType.SimpleDataElement:
+                return E;
+
+            case TokenContextType.CompositeDataElement:
+                return string.Join(EdiInterchange.DefaultCompositeSeparator, Children.Select(c => c.E));
+
+            default:
+                return base.ToString();
+
+        }
     }
+}
+
+public enum TokenContextType
+{
+    Loop,
+    Segment,
+    CompositeDataElement,
+    SimpleDataElement,
 }

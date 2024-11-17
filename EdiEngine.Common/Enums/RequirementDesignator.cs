@@ -1,8 +1,7 @@
-﻿namespace EdiEngine.Common.Enums
+﻿namespace EdiEngine.Common.Enums;
+
+public enum RequirementDesignator
 {
-    public enum RequirementDesignator
-    {
-        Mandatory,
-        Optional
-    }
+    Mandatory,
+    Optional,
 }

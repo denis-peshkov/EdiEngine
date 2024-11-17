@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace EdiEngine;
 
-namespace EdiEngine
+public class EdiParsingException : Exception
 {
-    public class EdiParsingException : Exception
-    {
-        public EdiParsingException(string message) : base(message) { }
-    }
+    public EdiParsingException(string message) : base(message) { }
 }

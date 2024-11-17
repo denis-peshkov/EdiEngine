@@ -8,7 +8,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <readme>docs\README.md</readme>
-    <projectUrl>https://github.com/denis.peshkov/EdiEngine</projectUrl>
+    <projectUrl>https://github.com/denis.peshkov/Cross.EdiEngine</projectUrl>
     <!-- <iconUrl>http://github.com/contoso/UsefulStuff/nuget_icon.png</iconUrl> -->
     <releaseNotes>
 	Fix incorrect ISA [13] segment filling.
@@ -16,7 +16,7 @@
     </releaseNotes>
     <description>Simple .NET EDI X12 Reader, Writer and Validator. EDI JSON and XML Serialization and Deserialization.</description>
     <tags>.NET EDI X12 JSON XML EdiReader EdiWriter EdiParser EdiXml EdiJson FunctionalAcknowledgment SyntaxNotes NetCore</tags>
-    <repository type="git" url="https://github.com/denis-peshkov/EdiEngine" />
+    <repository type="git" url="https://github.com/denis-peshkov/Cross.EdiEngine" />
     <dependencies>
       <group targetFramework="netstandard2.0">
         <dependency id="Newtonsoft.Json" version="12.0.3" />
