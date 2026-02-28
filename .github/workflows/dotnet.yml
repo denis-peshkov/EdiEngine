@@ -23,7 +23,7 @@ jobs:
 
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: 'Cross.EdiEngine.slnx'
+      SOLUTION: 'Cross.EdiEngine.sln'
 
     runs-on: ubuntu-22.04 # ubuntu-latest
 
