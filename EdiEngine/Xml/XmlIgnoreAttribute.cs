@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace EdiEngine.Xml;
 
-namespace EdiEngine.Xml
+[AttributeUsage(AttributeTargets.Property)]
+public class XmlIgnoreAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.Property)]
-    public class XmlIgnoreAttribute : Attribute
-    {
-    }
 }

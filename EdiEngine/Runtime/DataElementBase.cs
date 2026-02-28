@@ -1,25 +1,20 @@
-﻿using EdiEngine.Common.Definitions;
-using EdiEngine.Xml;
-using Newtonsoft.Json;
+namespace EdiEngine.Runtime;
 
-namespace EdiEngine.Runtime
+public abstract class DataElementBase
 {
-    public abstract class DataElementBase
+    protected DataElementBase(MapBaseDataElement definition)
     {
-        protected DataElementBase(MapBaseDataElement definition)
-        {
-            Definition = definition;
-        }
+        Definition = definition;
+    }
 
-        [JsonIgnore]
-        [XmlIgnore]
-        public MapBaseDataElement Definition { get; }
+    [JsonIgnore]
+    [XmlIgnore]
+    public MapBaseDataElement Definition { get; }
 
-        public abstract string Val { get;}
+    public abstract string Val { get;}
 
-        public override string ToString()
-        {
-            return Val ?? string.Empty;
-        }
+    public override string ToString()
+    {
+        return Val ?? string.Empty;
     }
 }

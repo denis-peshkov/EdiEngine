@@ -1,32 +1,31 @@
-﻿namespace EdiEngine
+﻿namespace EdiEngine;
+
+public enum AckValidationErrorBehavour
 {
-    public enum AckValidationErrorBehavour
+    AcceptAll,
+    AcceptButNoteErrors,
+    RejectValidationErrors,
+}
+
+public class AckBuilderSettings
+{
+    public AckBuilderSettings(
+        AckValidationErrorBehavour validationErrorBehavour,
+        bool alwaysGenerateAk2Loop,
+        int isaFirstControlNumber,
+        int gsFirstControlNumber
+    )
     {
-        AcceptAll,
-        AcceptButNoteErrors,
-        RejectValidationErrors,
+        AckValidationErrorBehavour = validationErrorBehavour;
+        AlwaysGenerateAk2Loop = alwaysGenerateAk2Loop;
+        IsaFirstControlNumber = isaFirstControlNumber;
+        GsFirstControlNumber = gsFirstControlNumber;
     }
 
-    public class AckBuilderSettings
-    {
-        public AckBuilderSettings(
-            AckValidationErrorBehavour validationErrorBehavour,
-            bool alwaysGenerateAk2Loop,
-            int isaFirstControlNumber,
-            int gsFirstControlNumber
-            )
-        {
-            AckValidationErrorBehavour = validationErrorBehavour;
-            AlwaysGenerateAk2Loop = alwaysGenerateAk2Loop;
-            IsaFirstControlNumber = isaFirstControlNumber;
-            GsFirstControlNumber = gsFirstControlNumber;
-        }
+    public AckValidationErrorBehavour AckValidationErrorBehavour { get; }
 
-        public AckValidationErrorBehavour AckValidationErrorBehavour { get; }
+    public bool AlwaysGenerateAk2Loop { get; }
 
-        public bool AlwaysGenerateAk2Loop { get; }
-
-        public int IsaFirstControlNumber { get; }
-        public int GsFirstControlNumber { get; }
-    }
+    public int IsaFirstControlNumber { get; }
+    public int GsFirstControlNumber { get; }
 }

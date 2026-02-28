@@ -2,29 +2,35 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>Cross.EdiEngine</id>
-    <version>1.6.1</version>
-    <authors>denis-peshkov</authors>
-    <owners>denis-peshkov</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
-    <readme>docs\README.md</readme>
-    <projectUrl>https://github.com/denis.peshkov/EdiEngine</projectUrl>
-    <!-- <iconUrl>http://github.com/contoso/UsefulStuff/nuget_icon.png</iconUrl> -->
-    <releaseNotes>
-	Fix incorrect ISA [13] segment filling.
-	Add possibility to set IsaAcknowledgementRequest segment.
-    </releaseNotes>
+    <version>0.0.0</version>
+    <authors>Denis Peshkov</authors>
+    <owners>Denis Peshkov</owners>
+    <copyright>Copyright Denis Peshkov</copyright>
+    <projectUrl>https://github.com/denis-peshkov/Cross.EdiEngine</projectUrl>
+    <repository type="git" url="https://github.com/denis-peshkov/Cross.EdiEngine.git" />
     <description>Simple .NET EDI X12 Reader, Writer and Validator. EDI JSON and XML Serialization and Deserialization.</description>
     <tags>.NET EDI X12 JSON XML EdiReader EdiWriter EdiParser EdiXml EdiJson FunctionalAcknowledgment SyntaxNotes NetCore</tags>
-    <repository type="git" url="https://github.com/denis-peshkov/EdiEngine" />
-    <dependencies>
-      <group targetFramework="netstandard2.0">
-        <dependency id="Newtonsoft.Json" version="12.0.3" />
-      </group>
-    </dependencies>
+    <icon>icon.png</icon>
+    <readme>docs\README.md</readme>
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>
+- Migrated to Cross.EdiEngine (project ownership transfer).
+- Multi-targeting: netstandard2.1, net6.0, net8.0.
+- Added .editorconfig, .gitattributes, GitHub Actions workflow.
+- GlobalUsings, Nullable reference types, code cleanup across solution.
+- SourceLink for debugging from NuGet.
+- Fix: incorrect ISA [13] segment filling.
+- Added: IsaAcknowledgementRequest in AckBuilderSettings (ISA segment spec).
+- Package updates. Removed packages.config (SDK-style projects).
+- Replaced Newtonsoft.Json with System.Text.Json.
+    </releaseNotes>
   </metadata>
   <files>
-    <file src="..\EdiEngine\bin\Release\netstandard2.0\EdiEngine*.* " target="lib\netstandard2.0" />
+    <file src="..\EdiEngine\bin\Release\netstandard2.1\EdiEngine*.* " target="lib\netstandard2.1" />
+    <file src="..\EdiEngine\bin\Release\net6\EdiEngine*.* " target="lib\net6.0" />
+    <file src="..\EdiEngine\bin\Release\net8\EdiEngine*.* " target="lib\net8.0" />
     <file src="..\README.md" target="docs\" />
+    <file src="..\icon.png" target="" />
   </files>
 </package>

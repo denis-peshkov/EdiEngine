@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using EdiEngine.Runtime;
+﻿namespace EdiEngine.Validation;
 
-namespace EdiEngine.Validation
+public interface IValidatedEntity
 {
-    public interface IValidatedEntity
-    {
-        List<ValidationError> ValidationErrors { get; }
-    }
+    List<ValidationError> ValidationErrors { get; }
 }

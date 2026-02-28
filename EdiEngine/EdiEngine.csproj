@@ -1,27 +1,31 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>EdiEngine</RootNamespace>
-    <AssemblyName>EdiEngine</AssemblyName>
+    <TargetFrameworks>netstandard2.1;net6;net8</TargetFrameworks>
+    <LangVersion>11</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnablePreviewFeatures>false</EnablePreviewFeatures>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
+    <NoWarn>1701;1702;1591;CS8618;</NoWarn>
+    <AssemblyName>Cross.EdiEngine</AssemblyName>
     <Description>Edi Engine main library</Description>
-    <PackageProjectUrl>https://github.com/olmelabs/EdiEngine</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/olmelabs/EdiEngine</RepositoryUrl>
-    <AssemblyVersion>1.6.0.0</AssemblyVersion>
-    <FileVersion>1.6.0.0</FileVersion>
-    <Version>1.6.0.0</Version>
+    <PackageProjectUrl>https://github.com/denis-peshkov/Cross.EdiEngine</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/denis-peshkov/Cross.EdiEngine</RepositoryUrl>
+    <AssemblyVersion>1.7.0.0</AssemblyVersion>
+    <FileVersion>1.7.0.0</FileVersion>
+    <Version>1.7.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="newtonsoft.json" Version="12.0.3" />
+    <PackageReference Include="System.Text.Json" Version="8.0.6" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EdiEngine.Common\EdiEngine.Common.csproj" />
     <ProjectReference Include="..\EdiStandards\X12_004010\X12_004010.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-  </ItemGroup>
+  
 </Project>

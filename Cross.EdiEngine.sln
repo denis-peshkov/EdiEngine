@@ -7,13 +7,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdiEngine.Common", "EdiEngi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EdiStandards", "EdiStandards", "{24D5CDE5-84E0-4BF4-994C-212F77088DF7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "X12_004010", "X12_004010", "{77860263-5E8E-4E9A-9F9A-E20C9E5B0A77}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X12_004010", "EdiStandards\X12_004010\X12_004010.csproj", "{092E8ECA-A810-48D1-A65A-1981239A9D21}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdiEngine", "EdiEngine\EdiEngine.csproj", "{62EF99C4-5CDA-499F-A4E3-C87406E970D6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdiEngine.Tests", "EdiEngine.Tests\EdiEngine.Tests.csproj", "{743B9BCC-666C-4D07-B4BD-3F5C6AB61B3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{A748C094-87C7-4D1A-8B2E-1E6A946B8BC0}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		LICENSE = LICENSE
+		ReleaseNotes.txt = ReleaseNotes.txt
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		GitVersion.yml = GitVersion.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{F9434FAC-9DB9-472A-87F2-C8AFB6DA4B4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{D6A08ACD-71AE-4C3F-9CF9-A4911DE24977}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,8 +58,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{77860263-5E8E-4E9A-9F9A-E20C9E5B0A77} = {24D5CDE5-84E0-4BF4-994C-212F77088DF7}
-		{092E8ECA-A810-48D1-A65A-1981239A9D21} = {77860263-5E8E-4E9A-9F9A-E20C9E5B0A77}
+		{092E8ECA-A810-48D1-A65A-1981239A9D21} = {24D5CDE5-84E0-4BF4-994C-212F77088DF7}
+		{D6A08ACD-71AE-4C3F-9CF9-A4911DE24977} = {F9434FAC-9DB9-472A-87F2-C8AFB6DA4B4B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E1C6362F-D57E-4298-BD4D-99D494399502}
