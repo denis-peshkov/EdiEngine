@@ -1,9 +1,9 @@
-﻿namespace EdiEngine.Tests;
+namespace EdiEngine.Tests;
 
-[TestClass]
+[TestFixture]
 public class SyntaxNoteTests
 {
-    [TestMethod]
+    [Test]
     public void SyntaxNote_Conditional()
     {
         //If the first element specified in the condition is present, then all others must be present
@@ -36,7 +36,7 @@ public class SyntaxNoteTests
         Assert.IsFalse(res6);
     }
 
-    [TestMethod]
+    [Test]
     public void SyntaxNote_Paired()
     {
         //If any element specified in the relational condition is present, then all must be present
@@ -70,7 +70,7 @@ public class SyntaxNoteTests
     }
 
 
-    [TestMethod]
+    [Test]
     public void SyntaxNote_Required()
     {
         //At least one specified in the relational condition must be present
@@ -100,7 +100,7 @@ public class SyntaxNoteTests
         Assert.IsFalse(res5);
     }
 
-    [TestMethod]
+    [Test]
     public void SyntaxNote_Exclusions()
     {
         //Not more than one can be present
@@ -132,7 +132,7 @@ public class SyntaxNoteTests
         Assert.IsFalse(res6);
     }
 
-    [TestMethod]
+    [Test]
     public void SyntaxNote_ListConditional()
     {
         //If the first element specified is present, then at least one of the remaining elements must be present
@@ -162,7 +162,7 @@ public class SyntaxNoteTests
         Assert.IsFalse(res5);
     }
 
-    [TestMethod]
+    [Test]
     public void SyntaxNote_Edi850Fail()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.SyntaxNotes.ERR.edi"))

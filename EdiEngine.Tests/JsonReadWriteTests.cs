@@ -1,9 +1,9 @@
 namespace EdiEngine.Tests;
 
-[TestClass]
+[TestFixture]
 public class JsonReadWriteTests
 {
-    [TestMethod]
+    [Test]
     public void JsonReadWrite_JsonSerializationTest()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.OK.edi"))
@@ -31,7 +31,7 @@ public class JsonReadWriteTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void JsonReadWrite_DeserializeJsonOK()
     {
         string json = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.940.OK.json");
@@ -45,7 +45,7 @@ public class JsonReadWriteTests
     }
 
 
-    [TestMethod]
+    [Test]
     public void JsonReadWrite_DeserializeJsonWithValidationErrors()
     {
         string json = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.940.ERR.json");
@@ -58,7 +58,7 @@ public class JsonReadWriteTests
         Assert.AreEqual(2, t.ValidationErrors.Count);
     }
 
-    [TestMethod]
+    [Test]
     public void JsonReadWrite_JsonSerializationHlLoopTest()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.856.Crossdock.OK.edi"))
@@ -71,7 +71,7 @@ public class JsonReadWriteTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void JsonReadWrite_DeserializeJsonHlLoopOk()
     {
         string json = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.856.Crossdock.OK.json");
@@ -86,7 +86,7 @@ public class JsonReadWriteTests
         //string edi = TestUtils.WriteEdiEnvelope(t, "SH");
     }
 
-    [TestMethod]
+    [Test]
     public void JsonReadWrite_SerializeComposite()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.Composite.SLN.OK.edi"))
@@ -99,7 +99,7 @@ public class JsonReadWriteTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void JsonReadWrite_DeserializeComposite()
     {
         string json = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.001.Fake.Composite.json");

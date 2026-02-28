@@ -1,9 +1,9 @@
 namespace EdiEngine.Tests;
 
-[TestClass]
+[TestFixture]
 public class EdiReaderTests
 {
-    [TestMethod]
+    [Test]
     public void EdiReader_ParseGenericEdi940()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.OK.edi"))
@@ -58,7 +58,7 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_ParseGenericEdi850()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.OK.edi"))
@@ -126,7 +126,7 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_ParseNestedLoopsEdi940()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.2.OK.edi"))
@@ -159,7 +159,7 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_ParseFailedSegCount()
     {
         using (
@@ -174,19 +174,20 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
-    [ExpectedException(typeof (EdiParsingException))]
+    [Test]
     public void EdiReader_ParseNonEDI()
     {
-        using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.NonEdi.edi"))
+        Assert.Throws<EdiParsingException>(() =>
         {
-            EdiDataReader r = new EdiDataReader();
-            r.FromStream(s);
-
-        }
+            using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.NonEdi.edi"))
+            {
+                EdiDataReader r = new EdiDataReader();
+                r.FromStream(s);
+            }
+        });
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_ParseMultipleInterchangesAndGroups()
     {
         using (
@@ -209,7 +210,7 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_WrongGroupsAndTranCount()
     {
         using (
@@ -227,7 +228,7 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_ControlNumbersMismatcht()
     {
         using (
@@ -246,7 +247,7 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_ParseGenericEdi940WithExternalMapAssembly()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.W05.Only.edi"))
@@ -260,7 +261,7 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_ParseCrossDock856HL()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.856.Crossdock.OK.edi"))
@@ -278,7 +279,7 @@ public class EdiReaderTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void EdiReader_ParseCompositeOk()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.Composite.SLN.OK.edi"))

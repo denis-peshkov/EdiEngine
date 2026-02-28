@@ -1,9 +1,9 @@
 namespace EdiEngine.Tests;
 
-[TestClass]
+[TestFixture]
 public class XmlReadWriteTests
 {
-    [TestMethod]
+    [Test]
     public void XmlReadWrite_XmlSerializationTest()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.OK.edi"))
@@ -29,7 +29,7 @@ public class XmlReadWriteTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void XmlReadWrite_DeserializeXmlOK()
     {
         string xml = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.940.OK.xml");
@@ -44,7 +44,7 @@ public class XmlReadWriteTests
         //string edi = TestUtils.WriteEdiEnvelope(t, "SH");
     }
 
-    [TestMethod]
+    [Test]
     public void XmlReadWrite_DeserializeXmlWithValidationErrors()
     {
         string xml = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.940.ERR.xml");
@@ -57,7 +57,7 @@ public class XmlReadWriteTests
         Assert.AreEqual(2, t.ValidationErrors.Count);
     }
 
-    [TestMethod]
+    [Test]
     public void XmlReadWrite_XmlSerializationHlLoopTest()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.856.Crossdock.OK.edi"))
@@ -76,7 +76,7 @@ public class XmlReadWriteTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void XmlReadWrite_DeserializeXmlHlLoopOk()
     {
         string xml = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.856.Crossdock.OK.xml");
@@ -92,7 +92,7 @@ public class XmlReadWriteTests
         //string edi = TestUtils.WriteEdiEnvelope(t, "SH");
     }
 
-    [TestMethod]
+    [Test]
     public void XmlReadWrite_SerializeComposite()
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.Composite.SLN.OK.edi"))
@@ -111,7 +111,7 @@ public class XmlReadWriteTests
         }
     }
 
-    [TestMethod]
+    [Test]
     public void XmlReadWrite_DeserializeComposite()
     {
         string xml = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.001.Fake.Composite.xml");

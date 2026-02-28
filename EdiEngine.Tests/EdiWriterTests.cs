@@ -1,9 +1,9 @@
 namespace EdiEngine.Tests;
 
-[TestClass]
+[TestFixture]
 public class EdiWriterTests
 {
-    [TestMethod]
+    [Test]
     public void EdiWriter_CreateEdi940()
     {
         M_940 map = new M_940();
@@ -94,7 +94,7 @@ public class EdiWriterTests
         Assert.AreEqual(0, trans.ValidationErrors.Count);
     }
 
-    [TestMethod]
+    [Test]
     public void EdiWriter_FromJson()
     {
         //get sample json
@@ -168,7 +168,7 @@ public class EdiWriterTests
         Assert.AreEqual(1, w76Count);
     }
 
-    [TestMethod]
+    [Test]
     public void EdiWriter_WriteComposite()
     {
         //nonexisting map with just SLN segment to test composites

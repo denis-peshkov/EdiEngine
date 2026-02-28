@@ -14,16 +14,17 @@
     <Description>Edi Engine X12 004010 lib</Description>
     <PackageProjectUrl>https://github.com/denis-peshkov/Cross.EdiEngine</PackageProjectUrl>
     <RepositoryUrl>https://github.com/denis-peshkov/Cross.EdiEngine</RepositoryUrl>
-    <AssemblyVersion>1.6.0.0</AssemblyVersion>
-    <FileVersion>1.6.0.0</FileVersion>
-    <Version>1.6.0.0</Version>
+    <AssemblyVersion>1.7.0.0</AssemblyVersion>
+    <FileVersion>1.7.0.0</FileVersion>
+    <Version>1.7.0.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\EdiEngine.Common\EdiEngine.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-  </ItemGroup>
 </Project>

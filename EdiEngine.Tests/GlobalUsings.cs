@@ -16,7 +16,7 @@ global using EdiEngine.Standards.X12_004010.Segments;
 global using EdiEngine.Tests.Maps;
 global using EdiEngine.Tests.Segments;
 global using EdiEngine.Validation;
-global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using NUnit.Framework;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using M_940 = EdiEngine.Standards.X12_004010.Maps.M_940;

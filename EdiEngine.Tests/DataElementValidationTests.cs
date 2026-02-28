@@ -1,12 +1,12 @@
-﻿namespace EdiEngine.Tests;
+namespace EdiEngine.Tests;
 
 public class EAny : MapSimpleDataElement { }
 
-[TestClass]
+[TestFixture]
 public class DataElementValidationTests
 {
 
-    [TestMethod]
+    [Test]
     public void Validation_RequiredMinMaxLen()
     {
         EAny def = new EAny()
@@ -30,7 +30,7 @@ public class DataElementValidationTests
         Assert.IsTrue(el.IsValid(def));
     }
 
-    [TestMethod]
+    [Test]
     public void Validation_OptionalMinMaxLen()
     {
         EAny def = new EAny()
@@ -54,7 +54,7 @@ public class DataElementValidationTests
         Assert.IsTrue(el.IsValid(def));
     }
 
-    [TestMethod]
+    [Test]
     public void Validation_OptionalDateTest()
     {
         EAny def = new EAny()
@@ -92,7 +92,7 @@ public class DataElementValidationTests
         Assert.IsTrue(el.IsValid(def2));
     }
 
-    [TestMethod]
+    [Test]
     public void Validation_OptionalTimeTest()
     {
         EAny def = new EAny()
@@ -141,7 +141,7 @@ public class DataElementValidationTests
 
     }
 
-    [TestMethod]
+    [Test]
     public void Validation_MandatoryDateTimeTest()
     {
         EAny def = new EAny()
@@ -173,7 +173,7 @@ public class DataElementValidationTests
         Assert.IsFalse(el.IsValid(def2));
     }
 
-    [TestMethod]
+    [Test]
     public void Validation_NumericTest()
     {
         EAny def = new EAny()
@@ -228,7 +228,7 @@ public class DataElementValidationTests
         Assert.IsTrue(el.IsValid(def3));
     }
 
-    [TestMethod]
+    [Test]
     public void Validation_IdTest()
     {
         EAny def = new EAny()
@@ -250,7 +250,7 @@ public class DataElementValidationTests
         Assert.IsTrue(el.IsValid(def));
     }
 
-    [TestMethod]
+    [Test]
     public void Validation_BinaryTest()
     {
         EAny def = new EAny()

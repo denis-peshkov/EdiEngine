@@ -1,11 +1,11 @@
-﻿namespace EdiEngine.Tests;
+namespace EdiEngine.Tests;
 
-[TestClass]
+[TestFixture]
 public class AckBuilderTests
 {
     public const string ACK_TEST_EDI = "EdiEngine.Tests.TestData.AckTest.edi";
 
-    [TestMethod]
+    [Test]
     public void AckBuilder_AcceptAll_NoAk2()
     {
         EdiBatch b;
@@ -49,7 +49,7 @@ public class AckBuilderTests
         Assert.AreEqual("1", ak9.Content[3].Val);
     }
 
-    [TestMethod]
+    [Test]
     public void AckBuilder_AcceptAll_WithAk2()
     {
         EdiBatch b;
@@ -101,7 +101,7 @@ public class AckBuilderTests
         Assert.AreEqual("1", ak9.Content[3].Val);
     }
 
-    [TestMethod]
+    [Test]
     public void AckBuilder_AcceptButNoteErrors()
     {
         EdiBatch b;
@@ -153,7 +153,7 @@ public class AckBuilderTests
         Assert.AreEqual("1", ak9.Content[3].Val);
     }
 
-    [TestMethod]
+    [Test]
     public void AckBuilder_RejectIfValidationErrors()
     {
         EdiBatch b;
