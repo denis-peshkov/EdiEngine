@@ -8,7 +8,7 @@ EdiEngine uses System.Text.Json for serialization and a custom JSON reader for d
 It uses POCO objects and XML is just an extension
 * **Configurable EDI X12 997 - Functional Acknowledgment** generation. You can setup whether to accept all messages, accept but say errors were noted or reject depending on your needs.
 * **HL Loop Hierarchical parsing** - Create real tree structure basing on HL segment hierarchy. No need to map every HL to map, this means one map can serve multiple needs. Say for ASN it can be S-O-P-I or S-O-I hierarchy in one map.
-* **Syntax Notes**. All types of [EDI Syntax notes](https://github.com/olmelabs/EdiEngine/wiki/Syntax-Notes) are supported. P Paired, R Required, E Exclusion, C Conditional, L List Conditional
+* **Syntax Notes**. All types of [EDI Syntax notes](https://github.com/denis-peshkov/Cross.EdiEngine/wiki/Syntax-Notes) are supported. P Paired, R Required, E Exclusion, C Conditional, L List Conditional
 * **Composite Data Elements** are supported, which is really important for HIPAA and sometimes for other transactions even in retail.
 * **X12 Maps** Current repository contains all 004010 maps, including Purchase Order, Invoice, Shipment and many others.
 You can easily craft yours on their basis.
@@ -20,7 +20,7 @@ Clone repository or Install Nuget Package
 Install-Package Cross.EdiEngine
 ```
 ## How To's
-Please use [Wiki](https://github.com/olmelabs/EdiEngine/wiki) for documentation and usage examples.
+Please use [Wiki](https://github.com/denis-peshkov/Cross.EdiEngine/wiki) for documentation and usage examples.
 
 #### Complete usage examples can be found in the test project ####
 Note - test project is not a part of nuget package. You have to clone repository.
@@ -35,4 +35,3 @@ Note - test project is not a part of nuget package. You have to clone repository
  - ~~Composite data elements~~
  - ~~.NET Core support~~
  - HIPAA support
-

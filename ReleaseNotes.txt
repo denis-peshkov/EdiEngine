@@ -10,10 +10,10 @@ Maps repository now contains all 004010 maps, including Purchase Order, Invoice 
 1.2.1 - 16 Nov 2017
 Added libs for .NET 4.5. to Nuget package.
 
-1.3.0 - 20 Nov 2017 	
+1.3.0 - 20 Nov 2017
 Added EDI 997 - Functional Acknowledgment generation.
 
-1.3.1 - 28 Nov 2017 
+1.3.1 - 28 Nov 2017
 Added HL Loop Hierarchical parsing.
 
 1.3.2 - 29 Nov 2017
@@ -35,6 +35,17 @@ Fixed Time validation parsing for 24h format.
 
 1.6.0 - 4 July 2020
 Added Sourcelink.
-Bugfix in Date Time validation. 
+Bugfix in Date Time validation.
 Package updates.
-Only netstandard2 is now supported. 
+Only netstandard2 is now supported.
+
+1.7.0 - 28 Feb 2026
+Migrated to Cross.EdiEngine (project ownership transfer).
+Multi-targeting: netstandard2.1, net6.0, net8.0.
+Added .editorconfig, .gitattributes, GitHub Actions workflow.
+GlobalUsings, Nullable reference types, code cleanup across solution.
+SourceLink for debugging from NuGet.
+Fix: incorrect ISA [13] segment filling.
+Added: IsaAcknowledgementRequest in AckBuilderSettings (ISA segment spec).
+Package updates. Removed packages.config (SDK-style projects).
+Replaced Newtonsoft.Json with System.Text.Json.
