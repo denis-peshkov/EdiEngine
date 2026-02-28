@@ -15,8 +15,15 @@
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-	Fix incorrect ISA [13] segment filling.
-	Add possibility to set IsaAcknowledgementRequest segment.
+- Migrated to Cross.EdiEngine (project ownership transfer).
+- Multi-targeting: netstandard2.1, net6.0, net8.0.
+- Added .editorconfig, .gitattributes, GitHub Actions workflow.
+- GlobalUsings, Nullable reference types, code cleanup across solution.
+- SourceLink for debugging from NuGet.
+- Fix: incorrect ISA [13] segment filling.
+- Added: IsaAcknowledgementRequest in AckBuilderSettings (ISA segment spec).
+- Package updates. Removed packages.config (SDK-style projects).
+- Replaced Newtonsoft.Json with System.Text.Json.
     </releaseNotes>
   </metadata>
   <files>

@@ -1,9 +1,9 @@
-# EdiEngine
+# Cross.EdiEngine
 Simple .NET EDI Reader, Writer and Validator.
 Read, Write and Validate X12 EDI files with simple EDI Parser written on C#.
 Main Features:
 * **EDI to JSON and JSON to EDI conversion**.
-EdiEngine uses System.Text.Json for serialization and a custom JSON reader for deserialization. Json is a handy extension for the library. Imagine you can parse your EDI object directly in Angular or JQuery app.
+Uses System.Text.Json (replaced Newtonsoft.Json) for serialization and a custom JSON reader for deserialization. JSON is a handy extension for the library. Imagine you can parse your EDI object directly in Angular or jQuery app.
 * **EDI to XML and XML to EDI conversion**. EdiEngine does not use XML as intermediate format, as many other engines do.
 It uses POCO objects and XML is just an extension
 * **Configurable EDI X12 997 - Functional Acknowledgment** generation. You can setup whether to accept all messages, accept but say errors were noted or reject depending on your needs.
@@ -12,7 +12,7 @@ It uses POCO objects and XML is just an extension
 * **Composite Data Elements** are supported, which is really important for HIPAA and sometimes for other transactions even in retail.
 * **X12 Maps** Current repository contains all 004010 maps, including Purchase Order, Invoice, Shipment and many others.
 You can easily craft yours on their basis.
-* **.NET Standard 2.0 and Source Linking**. From version 1.6 repository only contains .NET Standard 2.0 projects. Source linking enabled and symbol package is published to nuget symbols server, making debugging easier. If you need a projects targeted .NET 4.5, use version 1.5.2 (no sourcelink and symbols available).
+* **.NET Standard 2.1, .NET 6, .NET 8 and Source Linking**. Multi-targeting support. Source linking enabled and symbol package is published to NuGet symbols server, making debugging easier.
 
 ## Installation
 Clone repository or Install Nuget Package
