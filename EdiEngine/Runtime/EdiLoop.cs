@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class EdiLoop : EdiBaseEntity
 {
@@ -13,7 +13,7 @@ public class EdiLoop : EdiBaseEntity
         Parent = parent;
     }
 
-    [JsonProperty(Order = 0)]
+    [JsonPropertyOrder(0)]
     [XmlIgnore]
     public override string Type => "L";
 
@@ -21,7 +21,7 @@ public class EdiLoop : EdiBaseEntity
     [XmlIgnore]
     public EdiLoop Parent { get; }
 
-    [JsonProperty(Order = 10)]
+    [JsonPropertyOrder(10)]
     [XmlProperty(Order = 10)]
     public List<EdiBaseEntity> Content { get; }
 }

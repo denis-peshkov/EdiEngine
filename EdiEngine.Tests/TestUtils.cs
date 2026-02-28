@@ -1,5 +1,3 @@
-﻿using SegmentDefinitions = EdiEngine.Standards.X12_004010.Segments;
-
 namespace EdiEngine.Tests;
 
 public class TestUtils

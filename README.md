@@ -3,7 +3,7 @@ Simple .NET EDI Reader, Writer and Validator.
 Read, Write and Validate X12 EDI files with simple EDI Parser written on C#.
 Main Features:
 * **EDI to JSON and JSON to EDI conversion**.
-EdiEngine uses Newtonsoft Json for serialization, and raw Newtonsoft Json reader for Deserialization. Json is a handy extension for the library. Imagine you can parse your EDI object directly in Angular or JQuery app.
+EdiEngine uses System.Text.Json for serialization and a custom JSON reader for deserialization. Json is a handy extension for the library. Imagine you can parse your EDI object directly in Angular or JQuery app.
 * **EDI to XML and XML to EDI conversion**. EdiEngine does not use XML as intermediate format, as many other engines do.
 It uses POCO objects and XML is just an extension
 * **Configurable EDI X12 997 - Functional Acknowledgment** generation. You can setup whether to accept all messages, accept but say errors were noted or reject depending on your needs.

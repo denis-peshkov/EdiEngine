@@ -14,4 +14,5 @@ global using EdiEngine.Common.SyntaxNotes;
 global using EdiEngine.Runtime;
 global using EdiEngine.Validation;
 global using EdiEngine.Xml;
-global using Newtonsoft.Json;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;

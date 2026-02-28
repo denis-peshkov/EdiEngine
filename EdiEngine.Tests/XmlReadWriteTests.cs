@@ -1,5 +1,3 @@
-﻿using M_940 = EdiEngine.Standards.X12_004010.Maps.M_940;
-
 namespace EdiEngine.Tests;
 
 [TestClass]

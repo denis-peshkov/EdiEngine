@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class EdiInterchange : IValidatedEntity
 {
@@ -25,7 +25,7 @@ public class EdiInterchange : IValidatedEntity
     [XmlProperty(Order = 5)]
     public List<EdiGroup> Groups { get; set; }
 
-    [JsonProperty(Order = 100)]
+    [JsonPropertyOrder(100)]
     [XmlProperty(Order = 100)]
     public virtual List<ValidationError> ValidationErrors { get; }
 }

@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 [XmlElement(ElementName = "C")]
 public class EdiCompositeDataElement : DataElementBase
@@ -15,15 +15,15 @@ public class EdiCompositeDataElement : DataElementBase
     [XmlIgnore]
     public new MapCompositeDataElement Definition => (MapCompositeDataElement)base.Definition;
 
-    [JsonProperty(Order = 0)]
+    [JsonPropertyOrder(0)]
     [XmlIgnore]
     public string Type => "C";
 
-    [JsonProperty(Order = 1)]
+    [JsonPropertyOrder(1)]
     [XmlProperty(Order = 1)]
     public string Name { get; }
 
-    [JsonProperty(Order = 10)]
+    [JsonPropertyOrder(10)]
     [XmlProperty(Order = 10)]
     public List<EdiSimpleDataElement> Content { get; }
 

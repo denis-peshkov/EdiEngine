@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class EdiSegment : EdiBaseEntity
 {
@@ -7,11 +7,11 @@ public class EdiSegment : EdiBaseEntity
         Content = new List<DataElementBase>();
     }
 
-    [JsonProperty(Order = 0)]
+    [JsonPropertyOrder(0)]
     [XmlIgnore]
     public override string Type => "S";
 
-    [JsonProperty(Order = 10)]
+    [JsonPropertyOrder(10)]
     [XmlProperty(Order = 10)]
     public List<DataElementBase> Content { get; }
 

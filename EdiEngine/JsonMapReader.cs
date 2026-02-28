@@ -1,4 +1,4 @@
-﻿namespace EdiEngine;
+namespace EdiEngine;
 
 public class JsonMapReader : InetermediateFormatReader
 {
@@ -8,37 +8,49 @@ public class JsonMapReader : InetermediateFormatReader
 
     protected override EdiIntermediateEntity ReadIntermediateTree(string rawData)
     {
-        JsonTextReader reader = new JsonTextReader(new StringReader(rawData));
+        var reader = new Utf8JsonReader(
+            Encoding.UTF8.GetBytes(rawData),
+            new JsonReaderOptions
+            {
+                CommentHandling = JsonCommentHandling.Skip
+            });
 
-        EdiIntermediateEntity context = new EdiIntermediateEntity(null);
+        var root = new EdiIntermediateEntity(null);
+        var context = root;
         PropertyInfo prop = null;
 
         while (reader.Read())
         {
-            string val;
             switch (reader.TokenType)
             {
-                case JsonToken.StartObject:
+                case JsonTokenType.StartObject:
                     var ent = new EdiIntermediateEntity(context);
                     context?.Children.Add(ent);
                     context = ent;
                     break;
 
-                case JsonToken.PropertyName:
-                    val = reader.Value.ToString();
-                    prop = typeof(EdiIntermediateEntity).GetProperty(val);
+                case JsonTokenType.PropertyName:
+                    var propertyName = reader.GetString();
+                    if (!string.IsNullOrEmpty(propertyName))
+                    {
+                        prop = typeof(EdiIntermediateEntity).GetProperty(propertyName);
+                    }
                     break;
 
-                case JsonToken.String:
-                    val = reader.Value.ToString();
-                    prop?.SetValue(context, val);
+                case JsonTokenType.String:
+                    var value = reader.GetString();
+                    if (prop != null)
+                    {
+                        prop.SetValue(context, value);
+                    }
                     break;
 
-                case JsonToken.EndObject:
+                case JsonTokenType.EndObject:
                     context = context?.Parent;
                     break;
             }
         }
-        return context?.Children[0];
+
+        return root.Children.Count > 0 ? root.Children[0] : null;
     }
 }

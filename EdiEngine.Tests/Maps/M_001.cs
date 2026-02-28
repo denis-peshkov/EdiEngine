@@ -1,5 +1,3 @@
-﻿using SLN = EdiEngine.Tests.Segments.SLN;
-
 namespace EdiEngine.Tests.Maps;
 
 /// <summary>

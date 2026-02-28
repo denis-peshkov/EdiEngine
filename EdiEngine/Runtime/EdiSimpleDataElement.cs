@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 [XmlElement(IgnoreElementRoot = true)]
 public class EdiSimpleDataElement : DataElementBase
@@ -19,7 +19,8 @@ public class EdiSimpleDataElement : DataElementBase
     [XmlIgnore]
     public string Type { get; }
 
-    [JsonProperty(Order = 1, PropertyName = "E")]
+    [JsonPropertyOrder(1)]
+    [JsonPropertyName("E")]
     [XmlProperty(Order = 1, PropertyName = "E")]
     public override string Val { get; }
 }

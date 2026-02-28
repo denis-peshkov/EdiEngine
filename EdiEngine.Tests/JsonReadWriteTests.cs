@@ -1,5 +1,3 @@
-﻿using M_940 = EdiEngine.Standards.X12_004010.Maps.M_940;
-
 namespace EdiEngine.Tests;
 
 [TestClass]
@@ -13,10 +11,10 @@ public class JsonReadWriteTests
             EdiDataReader r = new EdiDataReader();
             EdiBatch b = r.FromStream(s);
 
-            //Write Json using newtonsoft
+            //Write Json
             //check no exception
-            JsonConvert.SerializeObject(b);
-            JsonConvert.SerializeObject(b.Interchanges[0].Groups[0].Transactions[0]);
+            JsonSerializer.Serialize(b);
+            JsonSerializer.Serialize(b.Interchanges[0].Groups[0].Transactions[0]);
 
             //or use writer to write to string or stream
             JsonDataWriter w  = new JsonDataWriter();

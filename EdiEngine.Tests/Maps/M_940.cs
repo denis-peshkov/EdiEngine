@@ -1,5 +1,3 @@
-﻿using W05 = EdiEngine.Tests.Segments.W05;
-
 namespace EdiEngine.Tests.Maps;
 
 public class M_940 : MapLoop

@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public abstract class EdiBaseEntity
 {
@@ -20,11 +20,11 @@ public abstract class EdiBaseEntity
     [XmlIgnore]
     public MapBaseEntity Definition { get; set; }
 
-    [JsonProperty(Order = 1)]
+    [JsonPropertyOrder(1)]
     [XmlProperty(Order = 1)]
     public string Name { get; set; }
 
-    [JsonProperty(Order = 0)]
+    [JsonPropertyOrder(0)]
     [XmlProperty(Order = 0)]
     public abstract string Type { get; }
 }

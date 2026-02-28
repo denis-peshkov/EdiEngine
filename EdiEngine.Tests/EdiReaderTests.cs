@@ -1,6 +1,3 @@
-﻿using M_940 = EdiEngine.Standards.X12_004010.Maps.M_940;
-using W05 = EdiEngine.Standards.X12_004010.Segments.W05;
-
 namespace EdiEngine.Tests;
 
 [TestClass]

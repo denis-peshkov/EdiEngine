@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class EdiTrans : EdiLoop, IValidatedEntity
 {
@@ -12,7 +12,7 @@ public class EdiTrans : EdiLoop, IValidatedEntity
         ValidationErrors = new List<ValidationError>();
     }
 
-    [JsonProperty(Order = 0)]
+    [JsonPropertyOrder(0)]
     [XmlIgnore]
     public override string Type => "M";
 
@@ -22,7 +22,7 @@ public class EdiTrans : EdiLoop, IValidatedEntity
     [XmlProperty(Order = 3)]
     public EdiSegment SE { get; set; }
 
-    [JsonProperty(Order = 100)]
+    [JsonPropertyOrder(100)]
     [XmlProperty(Order = 100)]
     public virtual List<ValidationError> ValidationErrors { get; }
 }
