@@ -28,8 +28,8 @@
   </metadata>
   <files>
     <file src="..\EdiEngine\bin\Release\netstandard2.1\EdiEngine*.* " target="lib\netstandard2.1" />
-    <file src="..\EdiEngine\bin\Release\net6\EdiEngine*.* " target="lib\net6.0" />
-    <file src="..\EdiEngine\bin\Release\net8\EdiEngine*.* " target="lib\net8.0" />
+    <file src="..\EdiEngine\bin\Release\net6.0\EdiEngine*.* " target="lib\net6.0" />
+    <file src="..\EdiEngine\bin\Release\net8.0\EdiEngine*.* " target="lib\net8.0" />
     <file src="..\README.md" target="docs\" />
     <file src="..\icon.png" target="" />
   </files>
