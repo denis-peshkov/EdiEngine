@@ -8,7 +8,8 @@
     <EnablePreviewFeatures>false</EnablePreviewFeatures>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU</Platforms>
-    <NoWarn>1701;1702;1591;CS8618;</NoWarn>
+    <NoWarn>1701;1702;1591;CS8618</NoWarn>
+    <NoWarn>1701;1702;1591;CS8618</NoWarn>
     <AssemblyName>EdiEngine.Standards.X12_004010</AssemblyName>
     <Description>Edi Engine X12 004010 lib</Description>
     <PackageProjectUrl>https://github.com/denis-peshkov/Cross.EdiEngine</PackageProjectUrl>
