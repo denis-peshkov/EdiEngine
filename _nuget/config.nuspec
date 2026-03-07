@@ -15,7 +15,7 @@
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-- Added EdiEngine.Samples project with usage examples (210, 322, 810, 850, 997).
+- EdiEngine.Samples: project with examples (210, 322, 810, 850, 997); Common.WriteTransToJson/WriteTransToXml.
 - M_210: added L_SPO loop to map.
 - M_602: fixed MS segment reference.
 - Removed simplified test maps (M_940, M_001) from EdiEngine.Tests.
@@ -23,6 +23,10 @@
 - Replaced SegmentDefinitions with EdiEngine.Standards.X12_004010.Segments in tests.
 - TargetFrameworks normalized to net6.0, net7.0 and net8.0 in project files.
 - README: badges, improved installation section.
+- XmlDataWriter: null-safe when batch has no envelope; InvariantCulture for numbers/dates in XML.
+- Control segments and AckBuilder: InvariantCulture for numbers/dates (no NNBSP); time format "hhmm" unchanged.
+- Tests: NonPrintableCharactersTests (EDI/XML/JSON free of non-printable chars); Xml/JsonReadWrite round-trip assertions.
+- Build: duplicate props removed from .csproj (use Directory.Build.props); .csproj UTF-8 BOM.
     </releaseNotes>
   </metadata>
   <files>
