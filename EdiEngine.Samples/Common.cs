@@ -2,7 +2,7 @@ namespace EdiEngine.Samples;
 
 internal static class Common
 {
-    internal const string OutputDirectory = "SamplesOutput";
+    internal const string OutputDirectory = "./../../../SamplesOutput";
 
     internal static void EnsureOutputDirectory()
     {
