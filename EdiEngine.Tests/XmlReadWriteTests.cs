@@ -41,7 +41,10 @@ public class XmlReadWriteTests
 
         Assert.AreEqual(0, t.ValidationErrors.Count);
 
-        //string edi = TestUtils.WriteEdiEnvelope(t, "SH");
+        string edi = TestUtils.WriteEdiEnvelope(t, "SH");
+        Assert.IsNotNull(edi);
+        Assert.IsTrue(edi.Contains("ST"));
+        Assert.IsTrue(edi.Contains("SE"));
     }
 
     [Test]
@@ -88,8 +91,10 @@ public class XmlReadWriteTests
 
         Assert.AreEqual(0, t.ValidationErrors.Count);
 
-        //write complete envelope
-        //string edi = TestUtils.WriteEdiEnvelope(t, "SH");
+        string edi = TestUtils.WriteEdiEnvelope(t, "SH");
+        Assert.IsNotNull(edi);
+        Assert.IsTrue(edi.Contains("ST"));
+        Assert.IsTrue(edi.Contains("SE"));
     }
 
     [Test]

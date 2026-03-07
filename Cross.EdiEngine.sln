@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{A748C0
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		GitVersion.yml = GitVersion.yml
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{F9434FAC-9DB9-472A-87F2-C8AFB6DA4B4B}"

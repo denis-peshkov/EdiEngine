@@ -11,11 +11,6 @@
     <NoWarn>1701;1702;1591;CS8618;</NoWarn>
     <AssemblyName>Cross.EdiEngine.Common</AssemblyName>
     <Description>Edi Engine comon library</Description>
-    <RepositoryUrl>https://github.com/denis-peshkov/Cross.EdiEngine</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/denis-peshkov/Cross.EdiEngine</PackageProjectUrl>
-    <AssemblyVersion>1.7.0.0</AssemblyVersion>
-    <FileVersion>1.7.0.0</FileVersion>
-    <Version>1.7.0.0</Version>
   </PropertyGroup>
 
   <Target Name="DeleteBinObjFolders" BeforeTargets="Clean">
