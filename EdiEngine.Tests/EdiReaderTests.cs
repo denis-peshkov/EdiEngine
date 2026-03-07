@@ -252,7 +252,7 @@ public class EdiReaderTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.W05.Only.edi"))
         {
-            EdiDataReader r = new EdiDataReader("EdiEngine.Tests");
+            EdiDataReader r = new EdiDataReader();
             EdiBatch b = r.FromStream(s);
 
             EdiTrans t = b.Interchanges[0].Groups[0].Transactions[0];

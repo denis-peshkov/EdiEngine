@@ -102,18 +102,19 @@ public class JsonReadWriteTests
     [Test]
     public void JsonReadWrite_DeserializeComposite()
     {
-        string json = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.001.Fake.Composite.json");
+        string json = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.850.Composite.SLN.OK.json");
 
-        M_001 map = new M_001();
+        M_850 map = new M_850();
         JsonMapReader r = new JsonMapReader(map);
 
         EdiTrans t = r.ReadToEnd(json);
 
         Assert.AreEqual(0, t.ValidationErrors.Count);
 
-        var sln = (EdiSegment)t.Content.First();
+        var lPo1 = (EdiLoop)t.Content.First(c => c is EdiLoop);
+        var lSln = (EdiLoop)lPo1.Content.First(c => c is EdiLoop && ((EdiLoop)c).Name == "L_SLN");
+        var sln = (EdiSegment)lSln.Content.First();
         Assert.IsTrue(sln.Content[4] is EdiCompositeDataElement);
         Assert.AreEqual(6, ((EdiCompositeDataElement)sln.Content[4]).Content.Count);
-
     }
 }

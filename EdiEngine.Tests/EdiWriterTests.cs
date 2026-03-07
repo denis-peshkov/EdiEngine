@@ -131,7 +131,7 @@ public class EdiWriterTests
         EdiTrans trans = batch.Interchanges[0].Groups[0].Transactions[0];
         Assert.AreEqual(0, trans.ValidationErrors.Count);
 
-        int w05Count = trans.Content.Count(l => l.Definition.GetType() == typeof(SegmentDefinitions.W05));
+        int w05Count = trans.Content.Count(l => l.Definition.GetType() == typeof(W05));
         int n1Count = trans.Content.Count(l => l.Definition.GetType() == typeof(M_940.L_N1));
         int n1FirstIterationCount =
             ((EdiLoop)trans.Content.First(l => l.Definition.GetType() == typeof(M_940.L_N1))).Content.Count;
@@ -141,17 +141,17 @@ public class EdiWriterTests
         int n1ThirdIterationCount =
             ((EdiLoop)trans.Content.Where(l => l.Definition.GetType() == typeof(M_940.L_N1)).Skip(2).First())
             .Content.Count;
-        int n9Count = trans.Content.Count(l => l.Definition.GetType() == typeof(SegmentDefinitions.N9));
-        int g62Count = trans.Content.Count(l => l.Definition.GetType() == typeof(SegmentDefinitions.G62));
-        int nteCount = trans.Content.Count(l => l.Definition.GetType() == typeof(SegmentDefinitions.NTE));
-        int w66Count = trans.Content.Count(l => l.Definition.GetType() == typeof(SegmentDefinitions.W66));
+        int n9Count = trans.Content.Count(l => l.Definition.GetType() == typeof(N9));
+        int g62Count = trans.Content.Count(l => l.Definition.GetType() == typeof(G62));
+        int nteCount = trans.Content.Count(l => l.Definition.GetType() == typeof(NTE));
+        int w66Count = trans.Content.Count(l => l.Definition.GetType() == typeof(W66));
         int lxCount = trans.Content.Count(l => l.Definition.GetType() == typeof(M_940.L_LX));
         int lxFirstIterationCount =
             ((EdiLoop)trans.Content.First(l => l.Definition.GetType() == typeof(M_940.L_LX))).Content.Count;
         int lxFirstIterationW01Count =
             ((EdiLoop)((EdiLoop)trans.Content.First(l => l.Definition.GetType() == typeof(M_940.L_LX)))
                 .Content.Skip(1).First()).Content.Count;
-        int w76Count = trans.Content.Count(l => l.Definition.GetType() == typeof(SegmentDefinitions.W76));
+        int w76Count = trans.Content.Count(l => l.Definition.GetType() == typeof(W76));
 
         Assert.AreEqual(1, w05Count);
         Assert.AreEqual(3, n1Count);
@@ -171,17 +171,50 @@ public class EdiWriterTests
     [Test]
     public void EdiWriter_WriteComposite()
     {
-        //nonexisting map with just SLN segment to test composites
-        M_001 map = new M_001();
+        M_850 map = new M_850();
+        var begDef = (MapSegment)map.Content.First(s => s.Name == "BEG");
+        var lPo1Def = (MapLoop)map.Content.First(s => s.Name == "L_PO1");
+        var po1Def = (MapSegment)lPo1Def.Content.First(s => s.Name == "PO1");
+        var lSlnDef = (MapLoop)lPo1Def.Content.First(s => s.Name == "L_SLN");
+        var sDef = (MapSegment)lSlnDef.Content.First(s => s.Name == "SLN");
+
         EdiTrans t = new EdiTrans(map);
 
-        var sDef = (MapSegment)map.Content.First(s => s.Name == "SLN");
+        var begSeg = new EdiSegment(begDef);
+        begSeg.Content.AddRange(new[]
+        {
+            new EdiSimpleDataElement(begDef.Content[0], "00"),
+            new EdiSimpleDataElement(begDef.Content[1], "SA"),
+            new EdiSimpleDataElement(begDef.Content[2], "08292233294"),
+            new EdiSimpleDataElement(begDef.Content[3], null),
+            new EdiSimpleDataElement(begDef.Content[4], "20101127"),
+            new EdiSimpleDataElement(begDef.Content[5], "610385385")
+        });
+        t.Content.Add(begSeg);
 
-        var seg = new EdiSegment(sDef);
+        var lPo1 = new EdiLoop(lPo1Def, null);
+        var po1Seg = new EdiSegment(po1Def);
+        po1Seg.Content.AddRange(new[]
+        {
+            new EdiSimpleDataElement(po1Def.Content[0], "1"),
+            new EdiSimpleDataElement(po1Def.Content[1], "120"),
+            new EdiSimpleDataElement(po1Def.Content[2], "EA"),
+            new EdiSimpleDataElement(po1Def.Content[3], "9.25"),
+            new EdiSimpleDataElement(po1Def.Content[4], "TE"),
+            new EdiSimpleDataElement(po1Def.Content[5], "CB"),
+            new EdiSimpleDataElement(po1Def.Content[6], "065322-117"),
+            new EdiSimpleDataElement(po1Def.Content[7], "PR"),
+            new EdiSimpleDataElement(po1Def.Content[8], "RO"),
+            new EdiSimpleDataElement(po1Def.Content[9], "VN"),
+            new EdiSimpleDataElement(po1Def.Content[10], "AB3542")
+        });
+        lPo1.Content.Add(po1Seg);
 
-        //create composite
+        var lSln = new EdiLoop(lSlnDef, null);
+        var slnSeg = new EdiSegment(sDef);
         var c001 = new EdiCompositeDataElement(sDef.Content[4], null);
-        c001.Content.AddRange(new[] {
+        c001.Content.AddRange(new[]
+        {
             new EdiSimpleDataElement(c001.Definition.Content[0], "PC"),
             new EdiSimpleDataElement(c001.Definition.Content[1], "21.1"),
             new EdiSimpleDataElement(c001.Definition.Content[2], "22.2"),
@@ -189,9 +222,7 @@ public class EdiWriterTests
             new EdiSimpleDataElement(c001.Definition.Content[4], "23.3"),
             new EdiSimpleDataElement(c001.Definition.Content[5], "24.4")
         });
-
-        //create segment
-        seg.Content.AddRange(new DataElementBase[]
+        slnSeg.Content.AddRange(new DataElementBase[]
         {
             new EdiSimpleDataElement(sDef.Content[0], "1.1"),
             new EdiSimpleDataElement(sDef.Content[1], null),
@@ -204,20 +235,23 @@ public class EdiWriterTests
             new EdiSimpleDataElement(sDef.Content[8], "VC"),
             new EdiSimpleDataElement(sDef.Content[9], "P-875OS")
         });
-        t.Content.Add(seg);
+        lSln.Content.Add(slnSeg);
+        lPo1.Content.Add(lSln);
+        t.Content.Add(lPo1);
 
         string data = TestUtils.WriteEdiEnvelope(t, "ZZ");
 
-        EdiDataReader r = new EdiDataReader("EdiEngine.Tests");
+        EdiDataReader r = new EdiDataReader();
         EdiBatch b = r.FromString(data);
 
         EdiTrans t2 = b.Interchanges[0].Groups[0].Transactions[0];
 
-        //1 error - unknown map
-        Assert.AreEqual(1, t2.ValidationErrors.Count);
+        Assert.AreEqual(0, t2.ValidationErrors.Count);
 
-        var sln = (EdiSegment)t.Content.First();
-        Assert.IsTrue(sln.Content[4] is EdiCompositeDataElement);
-        Assert.AreEqual(6, ((EdiCompositeDataElement)sln.Content[4]).Content.Count);
+        var lPo1Result = (EdiLoop)t2.Content.First(c => c is EdiLoop);
+        var lSlnResult = (EdiLoop)lPo1Result.Content.First(c => c is EdiLoop && ((EdiLoop)c).Name == "L_SLN");
+        var slnResult = (EdiSegment)lSlnResult.Content.First();
+        Assert.IsTrue(slnResult.Content[4] is EdiCompositeDataElement);
+        Assert.AreEqual(6, ((EdiCompositeDataElement)slnResult.Content[4]).Content.Count);
     }
 }
