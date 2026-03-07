@@ -5,7 +5,8 @@ Read, Write and Validate X12 EDI files with EDI Parser written on C#.
 
 Main Features:
 * **EDI to JSON and JSON to EDI conversion**. Uses System.Text.Json (replaced Newtonsoft.Json) for serialization and a custom JSON reader for deserialization. JSON is a handy extension for the library. Imagine you can parse your EDI object directly in Angular or jQuery app.
-* **EDI to XML and XML to EDI conversion**. EdiEngine does not use XML as intermediate format, as many other engines do. It uses POCO objects and XML is just an extension
+* **EDI to XML and XML to EDI conversion**. EdiEngine does not use XML as intermediate format, as many other engines do. It uses POCO objects and XML is just an extension.
+* **Deterministic output**: control segments (ISA, GS, ST, SE, IEA, GE) and XML serialization use InvariantCulture for numbers and dates, so EDI/XML/JSON do not contain locale-dependent characters (e.g. NNBSP).
 * **Configurable EDI X12 997 - Functional Acknowledgment** generation.
   You can setup whether to accept all messages, accept but say errors were noted or reject depending on your needs.
 * **HL Loop Hierarchical parsing** - Create a real tree structure based on HL segment hierarchy. No need to map every HL to map, this means one map can serve multiple needs. Say for ASN it can be S-O-P-I or S-O-I hierarchy in one map.

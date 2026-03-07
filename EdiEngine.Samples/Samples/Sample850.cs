@@ -2,7 +2,7 @@ namespace EdiEngine.Samples.Samples;
 
 internal static class Sample850
 {
-    public static void SavePurchaseOrderEdi()
+    public static void Save850Edi()
     {
         Common.EnsureOutputDirectory();
 
@@ -16,7 +16,7 @@ internal static class Sample850
         Console.WriteLine("Saved 850 EDI to " + path);
     }
 
-    public static void ReadPurchaseOrderEdiToJson()
+    public static void Read850EdiToJson()
     {
         Common.EnsureOutputDirectory();
 
@@ -38,6 +38,52 @@ internal static class Sample850
         File.WriteAllText(jsonPath, json);
 
         Console.WriteLine("Saved 850 JSON to " + jsonPath);
+    }
+
+    public static void Read850JsonToXml()
+    {
+        Common.EnsureOutputDirectory();
+
+        var jsonPath = Common.GetPath("850_po.json");
+        if (!File.Exists(jsonPath))
+        {
+            Console.WriteLine("850 JSON file not found: " + jsonPath);
+            return;
+        }
+
+        string json = File.ReadAllText(jsonPath);
+        var map = new M_850();
+        var reader = new JsonMapReader(map);
+        EdiTrans trans = reader.ReadToEnd(json);
+
+        string xml = Common.WriteTransToXml(trans, "PO");
+        var xmlPath = Common.GetPath("850_po.xml");
+        File.WriteAllText(xmlPath, xml);
+
+        Console.WriteLine("Saved 850 XML to " + xmlPath);
+    }
+
+    public static void Read850XmlToJson()
+    {
+        Common.EnsureOutputDirectory();
+
+        var xmlPath = Common.GetPath("850_po.xml");
+        if (!File.Exists(xmlPath))
+        {
+            Console.WriteLine("850 XML file not found: " + xmlPath);
+            return;
+        }
+
+        string xml = File.ReadAllText(xmlPath);
+        var map = new M_850();
+        var reader = new XmlMapReader(map);
+        EdiTrans trans = reader.ReadToEnd(xml);
+
+        string json = Common.WriteTransToJson(trans, "PO");
+        var jsonPath = Common.GetPath("850_po.json");
+        File.WriteAllText(jsonPath, json);
+
+        Console.WriteLine("Saved 850 JSON (from XML) to " + jsonPath);
     }
 
     internal static EdiTrans CreateSamplePurchaseOrder(M_850 map)

@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class IEA : EdiSegment
 {
@@ -15,8 +15,8 @@ public class IEA : EdiSegment
         int IEA02_ControlNumber) : base(definition)
     {
         Content.AddRange(new[] {
-            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[0], IEA01_IncludedGroupsCount.ToString()),
-            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[1], IEA02_ControlNumber.ToString().PadLeft(9, '0'))
+            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[0], IEA01_IncludedGroupsCount.ToString(CultureInfo.InvariantCulture)),
+            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[1], IEA02_ControlNumber.ToString(CultureInfo.InvariantCulture).PadLeft(9, '0'))
         });
     }
 }

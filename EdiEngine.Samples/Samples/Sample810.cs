@@ -2,7 +2,7 @@ namespace EdiEngine.Samples.Samples;
 
 internal static class Sample810
 {
-    public static void SaveInvoiceEdi()
+    public static void Save810Edi()
     {
         Common.EnsureOutputDirectory();
 
@@ -16,7 +16,7 @@ internal static class Sample810
         Console.WriteLine("Saved 810 EDI to " + path);
     }
 
-    public static void ReadInvoiceEdiToJson()
+    public static void Read810EdiToJson()
     {
         Common.EnsureOutputDirectory();
 
@@ -38,6 +38,52 @@ internal static class Sample810
         File.WriteAllText(jsonPath, json);
 
         Console.WriteLine("Saved 810 JSON to " + jsonPath);
+    }
+
+    public static void Read810JsonToXml()
+    {
+        Common.EnsureOutputDirectory();
+
+        var jsonPath = Common.GetPath("810_invoice.json");
+        if (!File.Exists(jsonPath))
+        {
+            Console.WriteLine("810 JSON file not found: " + jsonPath);
+            return;
+        }
+
+        string json = File.ReadAllText(jsonPath);
+        var map = new M_810();
+        var reader = new JsonMapReader(map);
+        EdiTrans trans = reader.ReadToEnd(json);
+
+        string xml = Common.WriteTransToXml(trans, "IN");
+        var xmlPath = Common.GetPath("810_invoice.xml");
+        File.WriteAllText(xmlPath, xml);
+
+        Console.WriteLine("Saved 810 XML to " + xmlPath);
+    }
+
+    public static void Read810XmlToJson()
+    {
+        Common.EnsureOutputDirectory();
+
+        var xmlPath = Common.GetPath("810_invoice.xml");
+        if (!File.Exists(xmlPath))
+        {
+            Console.WriteLine("810 XML file not found: " + xmlPath);
+            return;
+        }
+
+        string xml = File.ReadAllText(xmlPath);
+        var map = new M_810();
+        var reader = new XmlMapReader(map);
+        EdiTrans trans = reader.ReadToEnd(xml);
+
+        string json = Common.WriteTransToJson(trans, "IN");
+        var jsonPath = Common.GetPath("810_invoice.json");
+        File.WriteAllText(jsonPath, json);
+
+        Console.WriteLine("Saved 810 JSON (from XML) to " + jsonPath);
     }
 
     internal static EdiTrans CreateSampleInvoice(M_810 map)

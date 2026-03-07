@@ -16,13 +16,7 @@ internal static class Common
 
     internal static string WriteEdiEnvelope(EdiTrans t, string functionalCode)
     {
-        var batch = new EdiBatch();
-        var interchange = new EdiInterchange();
-        batch.Interchanges.Add(interchange);
-
-        var group = new EdiGroup(functionalCode);
-        interchange.Groups.Add(group);
-        group.Transactions.Add(t);
+        var batch = BuildBatchFromTrans(t, functionalCode);
 
         var isaDef = new EdiEngine.Standards.X12_004010.Segments.ISA();
         var ieaDef = new EdiEngine.Standards.X12_004010.Segments.IEA();
@@ -53,7 +47,34 @@ internal static class Common
             "\r\n",
             "*");
 
-        var writer = new EdiDataWriter(settings);
-        return writer.WriteToString(batch);
+        var ediWriter = new EdiDataWriter(settings);
+        return ediWriter.WriteToString(batch);
+    }
+
+    internal static string WriteTransToJson(EdiTrans t, string functionalCode)
+    {
+        var batch = BuildBatchFromTrans(t, functionalCode);
+        var jsonWriter = new JsonDataWriter();
+        return jsonWriter.WriteToString(batch);
+    }
+
+    internal static string WriteTransToXml(EdiTrans t, string functionalCode)
+    {
+        var batch = BuildBatchFromTrans(t, functionalCode);
+        var xmlWriter = new XmlDataWriter();
+        return xmlWriter.WriteToString(batch);
+    }
+
+    private static EdiBatch BuildBatchFromTrans(EdiTrans t, string functionalCode)
+    {
+        var batch = new EdiBatch();
+        var interchange = new EdiInterchange();
+        batch.Interchanges.Add(interchange);
+
+        var group = new EdiGroup(functionalCode);
+        interchange.Groups.Add(group);
+        group.Transactions.Add(t);
+
+        return batch;
     }
 }

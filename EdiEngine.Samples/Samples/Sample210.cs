@@ -2,7 +2,7 @@ namespace EdiEngine.Samples.Samples;
 
 internal static class Sample210
 {
-    public static void SaveFreightInvoiceEdi()
+    public static void Save210Edi()
     {
         Common.EnsureOutputDirectory();
 
@@ -16,7 +16,7 @@ internal static class Sample210
         Console.WriteLine("Saved 210 EDI to " + path);
     }
 
-    public static void ReadFreightInvoiceEdiToJson()
+    public static void Read210EdiToJson()
     {
         Common.EnsureOutputDirectory();
 
@@ -38,6 +38,52 @@ internal static class Sample210
         File.WriteAllText(jsonPath, json);
 
         Console.WriteLine("Saved 210 JSON to " + jsonPath);
+    }
+
+    public static void Read210JsonToXml()
+    {
+        Common.EnsureOutputDirectory();
+
+        var jsonPath = Common.GetPath("210_freight_invoice.json");
+        if (!File.Exists(jsonPath))
+        {
+            Console.WriteLine("210 JSON file not found: " + jsonPath);
+            return;
+        }
+
+        string json = File.ReadAllText(jsonPath);
+        var map = new M_210();
+        var reader = new JsonMapReader(map);
+        EdiTrans trans = reader.ReadToEnd(json);
+
+        string xml = Common.WriteTransToXml(trans, "IN");
+        var xmlPath = Common.GetPath("210_freight_invoice.xml");
+        File.WriteAllText(xmlPath, xml);
+
+        Console.WriteLine("Saved 210 XML to " + xmlPath);
+    }
+
+    public static void Read210XmlToJson()
+    {
+        Common.EnsureOutputDirectory();
+
+        var xmlPath = Common.GetPath("210_freight_invoice.xml");
+        if (!File.Exists(xmlPath))
+        {
+            Console.WriteLine("210 XML file not found: " + xmlPath);
+            return;
+        }
+
+        string xml = File.ReadAllText(xmlPath);
+        var map = new M_210();
+        var reader = new XmlMapReader(map);
+        EdiTrans trans = reader.ReadToEnd(xml);
+
+        string json = Common.WriteTransToJson(trans, "IN");
+        var jsonPath = Common.GetPath("210_freight_invoice.json");
+        File.WriteAllText(jsonPath, json);
+
+        Console.WriteLine("Saved 210 JSON (from XML) to " + jsonPath);
     }
 
     private static EdiTrans CreateSampleFreightInvoice(M_210 map)

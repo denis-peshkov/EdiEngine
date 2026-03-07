@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class SE : EdiSegment
 {
@@ -15,14 +15,14 @@ public class SE : EdiSegment
         int SE02_ControlNumber
     ) : base(definition)
     {
-        string tcn = SE02_ControlNumber.ToString();
+        string tcn = SE02_ControlNumber.ToString(CultureInfo.InvariantCulture);
         if (tcn.Length < 4)
         {
             tcn = tcn.PadLeft(4, '0');
         }
 
         Content.AddRange(new[] {
-            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[0], SE01_IncludedSegCount.ToString()),
+            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[0], SE01_IncludedSegCount.ToString(CultureInfo.InvariantCulture)),
             new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[1], tcn),
         });
     }

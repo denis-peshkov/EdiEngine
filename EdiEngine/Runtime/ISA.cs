@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class ISA : EdiSegment
 {
@@ -32,11 +32,11 @@ public class ISA : EdiSegment
             new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[5], ISA06_SenderId.PadRight(15)),
             new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[6], ISA07_ReceiverQual),
             new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[7], ISA08_ReceiverId.PadRight(15)),
-            new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[8], DateTime.Now.ToString("yyMMdd")),
-            new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[9], DateTime.Now.ToString("hhmm")),
+            new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[8], DateTime.Now.ToString("yyMMdd", CultureInfo.InvariantCulture)),
+            new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[9], DateTime.Now.ToString("hhmm", CultureInfo.InvariantCulture)),
             new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[10], "U"),
             new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[11], ISA12_VersionlNumber),
-            new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[12], ISA13_ControlNumber.ToString().PadLeft(9, '0')),
+            new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[12], ISA13_ControlNumber.ToString(CultureInfo.InvariantCulture).PadLeft(9, '0')),
             new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[13], ISA14_AcknowledgementRequest ? "1" : "0"),
             new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[14], ISA15_UsageIndicator),
             new EdiSimpleDataElement((MapSimpleDataElement) definition.Content[15], EdiInterchange.DefaultCompositeSeparator)

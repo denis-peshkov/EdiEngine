@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class GE: EdiSegment
 {
@@ -15,8 +15,8 @@ public class GE: EdiSegment
         int GE02_ControlNumber) : base(definition)
     {
         Content.AddRange(new[] {
-            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[0], GE01_IncludedTransCount.ToString()),
-            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[1], GE02_ControlNumber.ToString())
+            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[0], GE01_IncludedTransCount.ToString(CultureInfo.InvariantCulture)),
+            new EdiSimpleDataElement((MapSimpleDataElement)definition.Content[1], GE02_ControlNumber.ToString(CultureInfo.InvariantCulture))
         });
     }
 }

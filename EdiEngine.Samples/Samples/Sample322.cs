@@ -2,7 +2,7 @@ namespace EdiEngine.Samples.Samples;
 
 internal static class Sample322
 {
-    public static void SaveTerminalEdi()
+    public static void Save322Edi()
     {
         Common.EnsureOutputDirectory();
 
@@ -16,7 +16,7 @@ internal static class Sample322
         Console.WriteLine("Saved 322 terminal EDI to " + path);
     }
 
-    public static void ReadTerminalEdiToJson()
+    public static void Read322EdiToJson()
     {
         Common.EnsureOutputDirectory();
 
@@ -38,6 +38,52 @@ internal static class Sample322
         File.WriteAllText(jsonPath, json);
 
         Console.WriteLine("Saved 322 JSON to " + jsonPath);
+    }
+
+    public static void Read322JsonToXml()
+    {
+        Common.EnsureOutputDirectory();
+
+        var jsonPath = Common.GetPath("322_terminal.json");
+        if (!File.Exists(jsonPath))
+        {
+            Console.WriteLine("322 JSON file not found: " + jsonPath);
+            return;
+        }
+
+        string json = File.ReadAllText(jsonPath);
+        var map = new M_322();
+        var reader = new JsonMapReader(map);
+        EdiTrans trans = reader.ReadToEnd(json);
+
+        string xml = Common.WriteTransToXml(trans, "IW");
+        var xmlPath = Common.GetPath("322_terminal.xml");
+        File.WriteAllText(xmlPath, xml);
+
+        Console.WriteLine("Saved 322 XML to " + xmlPath);
+    }
+
+    public static void Read322XmlToJson()
+    {
+        Common.EnsureOutputDirectory();
+
+        var xmlPath = Common.GetPath("322_terminal.xml");
+        if (!File.Exists(xmlPath))
+        {
+            Console.WriteLine("322 XML file not found: " + xmlPath);
+            return;
+        }
+
+        string xml = File.ReadAllText(xmlPath);
+        var map = new M_322();
+        var reader = new XmlMapReader(map);
+        EdiTrans trans = reader.ReadToEnd(xml);
+
+        string json = Common.WriteTransToJson(trans, "IW");
+        var jsonPath = Common.GetPath("322_terminal.json");
+        File.WriteAllText(jsonPath, json);
+
+        Console.WriteLine("Saved 322 JSON (from XML) to " + jsonPath);
     }
 
     private static EdiTrans CreateSampleTerminalActivity(M_322 map)
