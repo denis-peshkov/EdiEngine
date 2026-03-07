@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>11</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnablePreviewFeatures>false</EnablePreviewFeatures>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
+    <NoWarn>1701;1702;1591;CS8618;</NoWarn>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>EdiEngine.Samples</AssemblyName>
+    <RootNamespace>EdiEngine.Samples</RootNamespace>
+    <Description>Samples for Cross.EdiEngine JSON &amp; EDI conversions</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EdiEngine.Common\EdiEngine.Common.csproj" />
+    <ProjectReference Include="..\EdiStandards\X12_004010\X12_004010.csproj" />
+    <ProjectReference Include="..\EdiEngine\EdiEngine.csproj" />
+  </ItemGroup>
+
+</Project>
+

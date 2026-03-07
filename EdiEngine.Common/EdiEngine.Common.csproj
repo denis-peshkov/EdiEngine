@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net6.0;net7.0;net8.0</TargetFrameworks>
     <LangVersion>11</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
@@ -10,12 +10,7 @@
     <Platforms>AnyCPU</Platforms>
     <NoWarn>1701;1702;1591;CS8618;</NoWarn>
     <AssemblyName>Cross.EdiEngine.Common</AssemblyName>
-    <Description>Edi Engine comon library</Description>
-    <RepositoryUrl>https://github.com/denis-peshkov/Cross.EdiEngine</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/denis-peshkov/Cross.EdiEngine</PackageProjectUrl>
-    <AssemblyVersion>1.7.0.0</AssemblyVersion>
-    <FileVersion>1.7.0.0</FileVersion>
-    <Version>1.7.0.0</Version>
+    <Description>Edi Engine common library</Description>
   </PropertyGroup>
 
   <Target Name="DeleteBinObjFolders" BeforeTargets="Clean">

@@ -14,7 +14,7 @@ public class M_602 : MapLoop
 			new L_N1(this) { ReqDes = RequirementDesignator.Optional, MaxOccurs = 200 },
 			new L_PR(this) { ReqDes = RequirementDesignator.Optional, MaxOccurs = 100 },
 			new L_SB(this) { ReqDes = RequirementDesignator.Optional, MaxOccurs = 99 },
-			new EdiEngine.Standards.X12_004010.Segments.MS() { ReqDes = RequirementDesignator.Optional, MaxOccurs = 200 },
+			new MS() { ReqDes = RequirementDesignator.Optional, MaxOccurs = 200 },
 			new DM() { ReqDes = RequirementDesignator.Optional, MaxOccurs = 5 },
 		});
 	}

@@ -1,4 +1,4 @@
-﻿namespace EdiEngine;
+namespace EdiEngine;
 
 public class XmlDataWriter : DataWriter
 {
@@ -49,6 +49,9 @@ public class XmlDataWriter : DataWriter
 
     private void WrtiteObject(object obj, XmlWriter w)
     {
+        if (obj == null)
+            return;
+
         //check element start - end tag should be omitted
         var elementAttr = obj.GetType().GetCustomAttributes().OfType<XmlElementAttribute>().FirstOrDefault();
         bool writeStratEndElement = !(elementAttr?.IgnoreElementRoot ?? false);
@@ -74,7 +77,10 @@ public class XmlDataWriter : DataWriter
 
             if (prop.PropertyType.IsGenericType && (prop.PropertyType.GetGenericTypeDefinition() == typeof(List<>)))
             {
-                var children = ((IEnumerable<object>)prop.GetValue(obj)).ToArray();
+                var listVal = prop.GetValue(obj) as System.Collections.IEnumerable;
+                if (listVal == null)
+                    continue;
+                var children = listVal.Cast<object>().ToArray();
                 if (!children.Any())
                     continue;
 
@@ -87,13 +93,20 @@ public class XmlDataWriter : DataWriter
             }
             else if (typeof (EdiBaseEntity).IsAssignableFrom(prop.PropertyType))
             {
-                WrtiteObject(prop.GetValue(obj), w);
+                var child = prop.GetValue(obj);
+                if (child != null)
+                    WrtiteObject(child, w);
             }
             else
             {
                 var val = prop.GetValue(obj);
                 if (val != null)
-                    w.WriteElementString(elementName, val.ToString());
+                {
+                    string s = val is IFormattable f
+                        ? f.ToString(null, CultureInfo.InvariantCulture)
+                        : val.ToString();
+                    w.WriteElementString(elementName, s);
+                }
             }
         }
 

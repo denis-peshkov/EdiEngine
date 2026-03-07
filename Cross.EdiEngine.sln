@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdiEngine", "EdiEngine\EdiE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdiEngine.Tests", "EdiEngine.Tests\EdiEngine.Tests.csproj", "{743B9BCC-666C-4D07-B4BD-3F5C6AB61B3B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdiEngine.Samples", "EdiEngine.Samples\EdiEngine.Samples.csproj", "{C0C8A61C-1C44-4D03-9B54-8B9D6C0C6C2A}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{A748C094-87C7-4D1A-8B2E-1E6A946B8BC0}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -22,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{A748C0
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		GitVersion.yml = GitVersion.yml
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{F9434FAC-9DB9-472A-87F2-C8AFB6DA4B4B}"
@@ -53,6 +56,10 @@ Global
 		{743B9BCC-666C-4D07-B4BD-3F5C6AB61B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{743B9BCC-666C-4D07-B4BD-3F5C6AB61B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{743B9BCC-666C-4D07-B4BD-3F5C6AB61B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0C8A61C-1C44-4D03-9B54-8B9D6C0C6C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0C8A61C-1C44-4D03-9B54-8B9D6C0C6C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0C8A61C-1C44-4D03-9B54-8B9D6C0C6C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0C8A61C-1C44-4D03-9B54-8B9D6C0C6C2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace EdiEngine;
+namespace EdiEngine;
 
 public class AckBuilder : EdiDataWriter
 {
@@ -177,9 +177,9 @@ public class AckBuilder : EdiDataWriter
         seg.Content.AddRange(new[]
         {
             new EdiSimpleDataElement((MapSimpleDataElement)sDef.Content[0], status),
-            new EdiSimpleDataElement((MapSimpleDataElement)sDef.Content[1], includedTranCount.ToString()),
-            new EdiSimpleDataElement((MapSimpleDataElement)sDef.Content[2], receivedTranCount.ToString()),
-            new EdiSimpleDataElement((MapSimpleDataElement)sDef.Content[3], reportedAcceptedTranCount.ToString()),
+            new EdiSimpleDataElement((MapSimpleDataElement)sDef.Content[1], includedTranCount.ToString(CultureInfo.InvariantCulture)),
+            new EdiSimpleDataElement((MapSimpleDataElement)sDef.Content[2], receivedTranCount.ToString(CultureInfo.InvariantCulture)),
+            new EdiSimpleDataElement((MapSimpleDataElement)sDef.Content[3], reportedAcceptedTranCount.ToString(CultureInfo.InvariantCulture)),
         });
 
         return seg;

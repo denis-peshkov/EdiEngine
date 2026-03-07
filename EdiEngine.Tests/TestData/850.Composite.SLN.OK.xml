@@ -1,0 +1,82 @@
+<EdiTrans>
+  <Name>M_850</Name>
+  <Content>
+    <EdiSegment>
+      <Name>BEG</Name>
+      <Content>
+        <E>00</E>
+        <E>SA</E>
+        <E>08292233294</E>
+        <E />
+        <E>20101127</E>
+        <E>610385385</E>
+      </Content>
+    </EdiSegment>
+    <EdiLoop>
+      <Name>L_PO1</Name>
+      <Content>
+        <EdiSegment>
+          <Name>PO1</Name>
+          <Content>
+            <E>1</E>
+            <E>120</E>
+            <E>EA</E>
+            <E>9.25</E>
+            <E>TE</E>
+            <E>CB</E>
+            <E>065322-117</E>
+            <E>PR</E>
+            <E>RO</E>
+            <E>VN</E>
+            <E>AB3542</E>
+          </Content>
+        </EdiSegment>
+        <EdiLoop>
+          <Name>L_PID</Name>
+          <Content>
+            <EdiSegment>
+              <Name>PID</Name>
+              <Content>
+                <E>F</E>
+                <E />
+                <E />
+                <E />
+                <E>SMALL WIDGET</E>
+              </Content>
+            </EdiSegment>
+          </Content>
+        </EdiLoop>
+        <EdiLoop>
+          <Name>L_SLN</Name>
+          <Content>
+            <EdiSegment>
+              <Name>SLN</Name>
+              <Content>
+                <E>1.1</E>
+                <E />
+                <E>I</E>
+                <E>10000</E>
+                <C>
+                  <Name>C001</Name>
+                  <Content>
+                    <E>PC</E>
+                    <E>21.1</E>
+                    <E>22.2</E>
+                    <E>EA</E>
+                    <E>23.3</E>
+                    <E>24.4</E>
+                  </Content>
+                </C>
+                <E>1.56</E>
+                <E>TP</E>
+                <E />
+                <E>VC</E>
+                <E>P-875OS</E>
+              </Content>
+            </EdiSegment>
+          </Content>
+        </EdiLoop>
+      </Content>
+    </EdiLoop>
+  </Content>
+</EdiTrans>

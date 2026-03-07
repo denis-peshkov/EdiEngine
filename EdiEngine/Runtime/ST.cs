@@ -1,4 +1,4 @@
-﻿namespace EdiEngine.Runtime;
+namespace EdiEngine.Runtime;
 
 public class ST : EdiSegment
 {
@@ -15,7 +15,7 @@ public class ST : EdiSegment
         int ST02_ControlNumber
     ) : base(definition)
     {
-        string tcn = ST02_ControlNumber.ToString();
+        string tcn = ST02_ControlNumber.ToString(CultureInfo.InvariantCulture);
         if (tcn.Length < 4)
         {
             tcn = tcn.PadLeft(4, '0');

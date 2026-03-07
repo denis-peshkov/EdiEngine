@@ -26,13 +26,28 @@ public class TestUtils
 
         //Add all service segments
         EdiDataWriterSettings settings = new EdiDataWriterSettings(
-            new SegmentDefinitions.ISA(), new SegmentDefinitions.IEA(),
-            new SegmentDefinitions.GS(), new SegmentDefinitions.GE(),
-            new SegmentDefinitions.ST(), new SegmentDefinitions.SE(),
-            "ZZ", "SENDER", "ZZ", "RECEIVER", "GSSENDER", "GSRECEIVER",
-            "00401", "004010", "T", 100, 200, false,"\r\n", "*");
+            new EdiEngine.Standards.X12_004010.Segments.ISA(),
+            new EdiEngine.Standards.X12_004010.Segments.IEA(),
+            new EdiEngine.Standards.X12_004010.Segments.GS(),
+            new EdiEngine.Standards.X12_004010.Segments.GE(),
+            new EdiEngine.Standards.X12_004010.Segments.ST(),
+            new EdiEngine.Standards.X12_004010.Segments.SE(),
+            "ZZ",
+            "SENDER",
+            "ZZ",
+            "RECEIVER",
+            "GSSENDER",
+            "GSRECEIVER",
+            "00401",
+            "004010",
+            "T",
+            100,
+            200,
+            false,
+            "\r\n",
+            "*");
 
         EdiDataWriter w = new EdiDataWriter(settings);
-        return  w.WriteToString(b);
+        return w.WriteToString(b);
     }
 }

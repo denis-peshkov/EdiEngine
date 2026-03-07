@@ -19,7 +19,7 @@ public class XmlReadWriteTests
             Assert.IsNotNull(stream);
             Assert.AreEqual(0, stream.Position);
             Assert.IsTrue(stream.CanRead);
-                
+
             XmlDocument xdoc = ValidateBySchema(data);
 
             //check parsed seg count
@@ -34,14 +34,17 @@ public class XmlReadWriteTests
     {
         string xml = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.940.OK.xml");
 
-        M_940 map = new M_940();
+        var map = new M_940();
         XmlMapReader r = new XmlMapReader(map);
 
         EdiTrans t = r.ReadToEnd(xml);
 
         Assert.AreEqual(0, t.ValidationErrors.Count);
 
-        //string edi = TestUtils.WriteEdiEnvelope(t, "SH");
+        string edi = TestUtils.WriteEdiEnvelope(t, "SH");
+        Assert.IsNotNull(edi);
+        Assert.IsTrue(edi.Contains("ST"));
+        Assert.IsTrue(edi.Contains("SE"));
     }
 
     [Test]
@@ -88,8 +91,10 @@ public class XmlReadWriteTests
 
         Assert.AreEqual(0, t.ValidationErrors.Count);
 
-        //write complete envelope
-        //string edi = TestUtils.WriteEdiEnvelope(t, "SH");
+        string edi = TestUtils.WriteEdiEnvelope(t, "SH");
+        Assert.IsNotNull(edi);
+        Assert.IsTrue(edi.Contains("ST"));
+        Assert.IsTrue(edi.Contains("SE"));
     }
 
     [Test]
@@ -114,19 +119,20 @@ public class XmlReadWriteTests
     [Test]
     public void XmlReadWrite_DeserializeComposite()
     {
-        string xml = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.001.Fake.Composite.xml");
+        string xml = TestUtils.ReadResourceStream("EdiEngine.Tests.TestData.850.Composite.SLN.OK.xml");
 
-        M_001 map = new M_001();
+        M_850 map = new M_850();
         XmlMapReader r = new XmlMapReader(map);
 
         EdiTrans t = r.ReadToEnd(xml);
 
         Assert.AreEqual(0, t.ValidationErrors.Count);
 
-        var sln = (EdiSegment)t.Content.First();
+        var lPo1 = (EdiLoop)t.Content.First(c => c is EdiLoop);
+        var lSln = (EdiLoop)lPo1.Content.First(c => c is EdiLoop && ((EdiLoop)c).Name == "L_SLN");
+        var sln = (EdiSegment)lSln.Content.First();
         Assert.IsTrue(sln.Content[4] is EdiCompositeDataElement);
         Assert.AreEqual(6, ((EdiCompositeDataElement)sln.Content[4]).Content.Count);
-
     }
 
     private XmlDocument ValidateBySchema(string data)
@@ -160,5 +166,4 @@ public class XmlReadWriteTests
         //fail test in case validation errors
         Assert.AreEqual(0, 1);
     }
-
 }

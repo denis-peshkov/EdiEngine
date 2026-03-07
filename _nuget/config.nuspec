@@ -15,21 +15,25 @@
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-- Migrated to Cross.EdiEngine (project ownership transfer).
-- Multi-targeting: netstandard2.1, net6.0, net8.0.
-- Added .editorconfig, .gitattributes, GitHub Actions workflow.
-- GlobalUsings, Nullable reference types, code cleanup across solution.
-- SourceLink for debugging from NuGet.
-- Fix: incorrect ISA [13] segment filling.
-- Added: IsaAcknowledgementRequest in AckBuilderSettings (ISA segment spec).
-- Package updates. Removed packages.config (SDK-style projects).
-- Replaced Newtonsoft.Json with System.Text.Json.
+- EdiEngine.Samples: project with examples (210, 322, 810, 850, 997); Common.WriteTransToJson/WriteTransToXml.
+- M_210: added L_SPO loop to map.
+- M_602: fixed MS segment reference.
+- Removed simplified test maps (M_940, M_001) from EdiEngine.Tests.
+- Composite tests now use M_850 from EdiStandards with 850.Composite.SLN.OK test data.
+- Replaced SegmentDefinitions with EdiEngine.Standards.X12_004010.Segments in tests.
+- TargetFrameworks normalized to net6.0, net7.0 and net8.0 in project files.
+- README: badges, improved installation section.
+- XmlDataWriter: null-safe when batch has no envelope; InvariantCulture for numbers/dates in XML.
+- Control segments and AckBuilder: InvariantCulture for numbers/dates (no NNBSP); time format "hhmm" unchanged.
+- Tests: NonPrintableCharactersTests (EDI/XML/JSON free of non-printable chars); Xml/JsonReadWrite round-trip assertions.
+- Build: duplicate props removed from .csproj (use Directory.Build.props); .csproj UTF-8 BOM.
     </releaseNotes>
   </metadata>
   <files>
-    <file src="..\EdiEngine\bin\Release\netstandard2.1\EdiEngine*.* " target="lib\netstandard2.1" />
-    <file src="..\EdiEngine\bin\Release\net6.0\EdiEngine*.* " target="lib\net6.0" />
-    <file src="..\EdiEngine\bin\Release\net8.0\EdiEngine*.* " target="lib\net8.0" />
+    <file src="..\EdiEngine\bin\Release\netstandard2.1\EdiEngine*.*" target="lib\netstandard2.1" />
+    <file src="..\EdiEngine\bin\Release\net6.0\EdiEngine*.*" target="lib\net6.0" />
+    <file src="..\EdiEngine\bin\Release\net7.0\EdiEngine*.*" target="lib\net7.0" />
+    <file src="..\EdiEngine\bin\Release\net8.0\EdiEngine*.*" target="lib\net8.0" />
     <file src="..\README.md" target="docs\" />
     <file src="..\icon.png" target="" />
   </files>
