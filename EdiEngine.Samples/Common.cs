@@ -1,8 +1,23 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace EdiEngine.Samples;
 
 internal static class Common
 {
     internal const string OutputDirectory = "./../../../SamplesOutput";
+
+    private static readonly IServiceProvider s_serviceProvider = CreateServiceProvider();
+
+    private static IServiceProvider CreateServiceProvider()
+    {
+        var configuration = new ConfigurationBuilder().Build();
+        var services = new ServiceCollection();
+        services.AddEdiEngine(configuration);
+        return services.BuildServiceProvider();
+    }
+
+    internal static IServiceProvider ServiceProvider => s_serviceProvider;
 
     internal static void EnsureOutputDirectory()
     {
@@ -47,21 +62,21 @@ internal static class Common
             "\r\n",
             "*");
 
-        var ediWriter = new EdiDataWriter(settings);
+        var ediWriter = new EdiDataWriter(settings, s_serviceProvider);
         return ediWriter.WriteToString(batch);
     }
 
     internal static string WriteTransToJson(EdiTrans t, string functionalCode)
     {
         var batch = BuildBatchFromTrans(t, functionalCode);
-        var jsonWriter = new JsonDataWriter();
+        var jsonWriter = new JsonDataWriter(s_serviceProvider);
         return jsonWriter.WriteToString(batch);
     }
 
     internal static string WriteTransToXml(EdiTrans t, string functionalCode)
     {
         var batch = BuildBatchFromTrans(t, functionalCode);
-        var xmlWriter = new XmlDataWriter();
+        var xmlWriter = new XmlDataWriter(s_serviceProvider);
         return xmlWriter.WriteToString(batch);
     }
 

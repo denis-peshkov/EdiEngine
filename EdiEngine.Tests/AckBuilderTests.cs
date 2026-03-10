@@ -11,12 +11,12 @@ public class AckBuilderTests
         EdiBatch b;
         using (Stream s = GetType().Assembly.GetManifestResourceStream(ACK_TEST_EDI))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             b = r.FromStream(s);
         }
 
         AckBuilderSettings ackSettings = new AckBuilderSettings(AckValidationErrorBehavour.AcceptAll, false, 100, 200);
-        var ack = new AckBuilder(ackSettings);
+        var ack = new AckBuilder(ackSettings, TestUtils.ServiceProvider);
 
         EdiBatch ackBatch = ack.GetnerateAcknowledgment(b);
         //string data = ack.WriteToString(b);
@@ -55,12 +55,12 @@ public class AckBuilderTests
         EdiBatch b;
         using (Stream s = GetType().Assembly.GetManifestResourceStream(ACK_TEST_EDI))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             b = r.FromStream(s);
         }
 
         AckBuilderSettings ackSettings = new AckBuilderSettings(AckValidationErrorBehavour.AcceptAll, true, 100, 200);
-        var ack = new AckBuilder(ackSettings);
+        var ack = new AckBuilder(ackSettings, TestUtils.ServiceProvider);
 
         EdiBatch ackBatch = ack.GetnerateAcknowledgment(b);
         //string data = ack.WriteToString(b);
@@ -107,12 +107,12 @@ public class AckBuilderTests
         EdiBatch b;
         using (Stream s = GetType().Assembly.GetManifestResourceStream(ACK_TEST_EDI))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             b = r.FromStream(s);
         }
 
         AckBuilderSettings ackSettings = new AckBuilderSettings(AckValidationErrorBehavour.AcceptButNoteErrors, false, 100, 200);
-        var ack = new AckBuilder(ackSettings);
+        var ack = new AckBuilder(ackSettings, TestUtils.ServiceProvider);
 
         EdiBatch ackBatch = ack.GetnerateAcknowledgment(b);
         //string data = ack.WriteToString(b);
@@ -159,12 +159,12 @@ public class AckBuilderTests
         EdiBatch b;
         using (Stream s = GetType().Assembly.GetManifestResourceStream(ACK_TEST_EDI))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             b = r.FromStream(s);
         }
 
         AckBuilderSettings ackSettings = new AckBuilderSettings(AckValidationErrorBehavour.RejectValidationErrors, false, 100, 200);
-        var ack = new AckBuilder(ackSettings);
+        var ack = new AckBuilder(ackSettings, TestUtils.ServiceProvider);
 
         EdiBatch ackBatch = ack.GetnerateAcknowledgment(b);
         string data = ack.WriteToString(b);

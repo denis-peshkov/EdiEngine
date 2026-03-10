@@ -28,10 +28,10 @@ internal static class Sample322
         }
 
         string edi = File.ReadAllText(ediPath);
-        var ediReader = new EdiDataReader();
+        var ediReader = new EdiDataReader(Common.ServiceProvider);
         EdiBatch batch = ediReader.FromString(edi);
 
-        var jsonWriter = new JsonDataWriter();
+        var jsonWriter = new JsonDataWriter(Common.ServiceProvider);
         string json = jsonWriter.WriteToString(batch);
 
         var jsonPath = Common.GetPath("322_terminal.json");

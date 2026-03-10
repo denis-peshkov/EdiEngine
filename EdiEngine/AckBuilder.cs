@@ -4,13 +4,16 @@ public class AckBuilder : EdiDataWriter
 {
     private readonly AckBuilderSettings _settings;
 
-    public AckBuilder(AckBuilderSettings settings) : base(null)
+    public AckBuilder(AckBuilderSettings settings, IServiceProvider serviceProvider)
+        : base(null, serviceProvider)
     {
         _settings = settings;
     }
 
     public override Stream WriteToStream(EdiBatch batch)
     {
+        _serviceProvider.CheckLicense();
+
         EdiBatch ackBatch = GetnerateAcknowledgment(batch);
         BuildAckControlSegments(ackBatch, batch);
 
@@ -24,6 +27,8 @@ public class AckBuilder : EdiDataWriter
 
     public override string WriteToString(EdiBatch batch)
     {
+        _serviceProvider.CheckLicense();
+
         EdiBatch ackBatch = GetnerateAcknowledgment(batch);
         BuildAckControlSegments(ackBatch, batch);
 

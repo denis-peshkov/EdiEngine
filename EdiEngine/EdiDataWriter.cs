@@ -1,8 +1,9 @@
-﻿namespace EdiEngine;
+namespace EdiEngine;
 
 public class EdiDataWriter : DataWriter
 {
     private int _currentTranSegCount;
+
     private readonly EdiDataWriterSettings _settings;
 
     protected string CurrentSegmentSeparator { get; set; }
@@ -10,7 +11,8 @@ public class EdiDataWriter : DataWriter
     protected string CurrentElementSeparator { get; set; }
 
 
-    public EdiDataWriter(EdiDataWriterSettings settings)
+    public EdiDataWriter(EdiDataWriterSettings settings, IServiceProvider serviceProvider)
+        : base(serviceProvider)
     {
         _settings = settings;
         CurrentSegmentSeparator = _settings?.SegmentSeparator;
@@ -19,6 +21,8 @@ public class EdiDataWriter : DataWriter
 
     public override Stream WriteToStream(EdiBatch batch)
     {
+        _serviceProvider.CheckLicense();
+
         Stream s = new MemoryStream();
         StreamWriter w = new StreamWriter(s);
         w.Write(WriteToStringBuilder(batch));
@@ -29,6 +33,8 @@ public class EdiDataWriter : DataWriter
 
     public override string WriteToString(EdiBatch batch)
     {
+        _serviceProvider.CheckLicense();
+
         return WriteToStringBuilder(batch).ToString();
     }
 
@@ -103,7 +109,7 @@ public class EdiDataWriter : DataWriter
         }
         else if (ent is EdiSegment)
         {
-            var seg = (EdiSegment) ent;
+            var seg = (EdiSegment)ent;
 
             _currentTranSegCount++;
 
@@ -112,6 +118,7 @@ public class EdiDataWriter : DataWriter
             {
                 sb.Append($"{CurrentElementSeparator}{el.Val}");
             }
+
             sb.Append(CurrentSegmentSeparator);
 
             if (validationScope != null)

@@ -1,9 +1,5 @@
 namespace EdiEngine.Tests;
 
-using System.Globalization;
-using EdiEngine;
-using EdiEngine.Standards.X12_004010.Segments;
-
 [TestFixture]
 public class NonPrintableCharactersTests
 {
@@ -75,12 +71,12 @@ public class NonPrintableCharactersTests
     private static EdiDataWriter CreateEdiDataWriter()
     {
         var settings = new EdiDataWriterSettings(
-            new ISA(),
-            new IEA(),
-            new GS(),
-            new GE(),
-            new ST(),
-            new SE(),
+            new EdiEngine.Standards.X12_004010.Segments.ISA(),
+            new EdiEngine.Standards.X12_004010.Segments.IEA(),
+            new EdiEngine.Standards.X12_004010.Segments.GS(),
+            new EdiEngine.Standards.X12_004010.Segments.GE(),
+            new EdiEngine.Standards.X12_004010.Segments.ST(),
+            new EdiEngine.Standards.X12_004010.Segments.SE(),
             "ZZ",
             "SENDER",
             "ZZ",
@@ -95,7 +91,7 @@ public class NonPrintableCharactersTests
             false,
             "\r\n",
             "*");
-        return new EdiDataWriter(settings);
+        return new EdiDataWriter(settings, TestUtils.ServiceProvider);
     }
 
     [Test]
@@ -106,18 +102,18 @@ public class NonPrintableCharactersTests
         using (Stream s = GetType().Assembly.GetManifestResourceStream(resourceName))
         {
             Assert.IsNotNull(s, "Missing resource: " + resourceName);
-            var reader = new EdiDataReader();
+            var reader = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = reader.FromStream(s);
 
             var ediWriter = CreateEdiDataWriter();
             string edi = ediWriter.WriteToString(b);
             AssertNoNonPrintableCharacters(edi, "EDI (" + resourceFileName + ")");
 
-            var xmlWriter = new XmlDataWriter();
+            var xmlWriter = new XmlDataWriter(TestUtils.ServiceProvider);
             string xml = xmlWriter.WriteToString(b);
             AssertNoNonPrintableCharacters(xml, "XML (" + resourceFileName + ")");
 
-            var jsonWriter = new JsonDataWriter();
+            var jsonWriter = new JsonDataWriter(TestUtils.ServiceProvider);
             string json = jsonWriter.WriteToString(b);
             AssertNoNonPrintableCharacters(json, "JSON (" + resourceFileName + ")");
         }

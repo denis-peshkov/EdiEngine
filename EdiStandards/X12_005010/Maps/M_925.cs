@@ -1,0 +1,24 @@
+namespace EdiEngine.Standards.X12_005010.Maps;
+
+public class M_925 : MapLoop
+{
+	public M_925() : base(null)
+	{
+		Content.AddRange(new MapBaseEntity[] {
+			new L_F10(this) { ReqDes = RequirementDesignator.Mandatory, MaxOccurs = 99 },
+		});
+	}
+
+	//1000
+	public class L_F10 : MapLoop
+	{
+		public L_F10(MapLoop parentLoop) : base(parentLoop)
+		{
+			Content.AddRange(new MapBaseEntity[] {
+				new F10() { ReqDes = RequirementDesignator.Mandatory, MaxOccurs = 1 },
+				new F02() { ReqDes = RequirementDesignator.Optional, MaxOccurs = 1 },
+			});
+		}
+	}
+
+}

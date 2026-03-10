@@ -167,7 +167,7 @@ public class SyntaxNoteTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.SyntaxNotes.ERR.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             EdiTrans t = b.Interchanges[0].Groups[0].Transactions[0];

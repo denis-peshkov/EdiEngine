@@ -81,7 +81,7 @@ public class EdiWriterTests
         string data = TestUtils.WriteEdiEnvelope(t, "OW");
 
         //read produced results and check for errors.
-        EdiDataReader r = new EdiDataReader();
+        EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
         EdiBatch batch = r.FromString(data);
 
         Assert.AreEqual(1, batch.Interchanges.Count);
@@ -119,7 +119,7 @@ public class EdiWriterTests
         string data = TestUtils.WriteEdiEnvelope(t, "OW");
 
         //Read produced results and check for errors and correct parsing
-        EdiDataReader reader = new EdiDataReader();
+        EdiDataReader reader = new EdiDataReader(TestUtils.ServiceProvider);
         EdiBatch batch = reader.FromString(data);
 
         Assert.AreEqual(1, batch.Interchanges.Count);
@@ -241,7 +241,7 @@ public class EdiWriterTests
 
         string data = TestUtils.WriteEdiEnvelope(t, "ZZ");
 
-        EdiDataReader r = new EdiDataReader();
+        EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
         EdiBatch b = r.FromString(data);
 
         EdiTrans t2 = b.Interchanges[0].Groups[0].Transactions[0];

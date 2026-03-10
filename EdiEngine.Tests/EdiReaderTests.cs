@@ -8,7 +8,7 @@ public class EdiReaderTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             Assert.AreEqual(1, b.Interchanges.Count);
@@ -63,7 +63,7 @@ public class EdiReaderTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             Assert.AreEqual(1, b.Interchanges.Count);
@@ -131,7 +131,7 @@ public class EdiReaderTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.2.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             EdiTrans t = b.Interchanges[0].Groups[0].Transactions[0];
@@ -165,7 +165,7 @@ public class EdiReaderTests
         using (
             Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940_Failed_SE01.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             EdiTrans t = b.Interchanges[0].Groups[0].Transactions[0];
@@ -181,7 +181,7 @@ public class EdiReaderTests
         {
             using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.NonEdi.edi"))
             {
-                EdiDataReader r = new EdiDataReader();
+                EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
                 r.FromStream(s);
             }
         });
@@ -196,7 +196,7 @@ public class EdiReaderTests
                 .Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.MultipleInterchangesAndGroups.edi")
         )
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             Assert.AreEqual(2, b.Interchanges.Count);
@@ -218,7 +218,7 @@ public class EdiReaderTests
             GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.WrongGroupsAndTranCount.edi")
         )
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             Assert.AreEqual("Expected 2 groups. Found 1. Interchange # 3438.",
@@ -235,7 +235,7 @@ public class EdiReaderTests
             Stream s =
             GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.ControlNumbersMismatch.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             Assert.AreEqual("Control numbers do not match. ISA 000003438. IEA 000003439.",
@@ -252,7 +252,7 @@ public class EdiReaderTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.W05.Only.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             EdiTrans t = b.Interchanges[0].Groups[0].Transactions[0];
@@ -266,7 +266,7 @@ public class EdiReaderTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.856.Crossdock.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             Assert.AreEqual(1, b.Interchanges.Count);
@@ -284,7 +284,7 @@ public class EdiReaderTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.Composite.SLN.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             Assert.AreEqual(1, b.Interchanges.Count);

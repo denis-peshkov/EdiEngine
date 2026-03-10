@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net6.0;net8.0</TargetFrameworks>
+    <LangVersion>11</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnablePreviewFeatures>false</EnablePreviewFeatures>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
+    <NoWarn>1701;1702;1591;CS8618</NoWarn>
+    <NoWarn>1701;1702;1591;CS8618</NoWarn>
+    <RootNamespace>EdiEngine.Standards.X12_005010</RootNamespace>
+    <AssemblyName>EdiEngine.Standards.X12_005010</AssemblyName>
+    <Description>Edi Engine X12 005010 lib</Description>
+  </PropertyGroup>
+
+  <Target Name="DeleteBinObjFolders" BeforeTargets="Clean">
+    <RemoveDir Directories=".\bin" />
+    <Delete Files=".\obj\**\*.cs" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\EdiEngine.Common\EdiEngine.Common.csproj" />
+  </ItemGroup>
+
+</Project>

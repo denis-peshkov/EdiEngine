@@ -13,7 +13,7 @@ internal static class Sample997
         var poPath = Common.GetPath("850_for_997.edi");
         File.WriteAllText(poPath, poEdi);
 
-        var ediReader = new EdiDataReader();
+        var ediReader = new EdiDataReader(Common.ServiceProvider);
         EdiBatch original = ediReader.FromString(poEdi);
 
         var ackSettings = new AckBuilderSettings(
@@ -22,7 +22,7 @@ internal static class Sample997
             isaFirstControlNumber: 1,
             gsFirstControlNumber: 1);
 
-        var ackBuilder = new AckBuilder(ackSettings);
+        var ackBuilder = new AckBuilder(ackSettings, Common.ServiceProvider);
         string ackEdi = ackBuilder.WriteToString(original);
 
         var ackPath = Common.GetPath("997_ack.edi");
@@ -44,10 +44,10 @@ internal static class Sample997
         }
 
         string ackEdi = File.ReadAllText(ackPath);
-        var ediReader = new EdiDataReader();
+        var ediReader = new EdiDataReader(Common.ServiceProvider);
         EdiBatch ackBatch = ediReader.FromString(ackEdi);
 
-        var jsonWriter = new JsonDataWriter();
+        var jsonWriter = new JsonDataWriter(Common.ServiceProvider);
         string json = jsonWriter.WriteToString(ackBatch);
 
         var jsonPath = Common.GetPath("997_ack.json");

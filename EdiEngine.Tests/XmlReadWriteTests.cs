@@ -8,10 +8,10 @@ public class XmlReadWriteTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
-            XmlDataWriter w = new XmlDataWriter();
+            XmlDataWriter w = new XmlDataWriter(TestUtils.ServiceProvider);
             string data = w.WriteToString(b);
 
             Stream stream = w.WriteToStream(b);
@@ -65,10 +65,10 @@ public class XmlReadWriteTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.856.Crossdock.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
-            XmlDataWriter w = new XmlDataWriter();
+            XmlDataWriter w = new XmlDataWriter(TestUtils.ServiceProvider);
             string data = w.WriteToString(b);
 
             XmlDocument xdoc = ValidateBySchema(data);
@@ -102,10 +102,10 @@ public class XmlReadWriteTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.Composite.SLN.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
-            XmlDataWriter w = new XmlDataWriter();
+            XmlDataWriter w = new XmlDataWriter(TestUtils.ServiceProvider);
             string data = w.WriteToString(b);
 
             XmlDocument xdoc = ValidateBySchema(data);

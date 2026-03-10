@@ -28,6 +28,36 @@ or
 dotnet add package Cross.EdiEngine
 ```
 
+## Licensing
+
+Для production требуется лицензия. Ключ лицензии задаётся одним из способов (приоритет: 1 → 2 → 3):
+
+1. **appsettings.json** — вызвать `EdiEngineConfiguration.ConfigureLicensing(configuration)` при старте приложения (namespace EdiEngine.Licensing):
+
+```json
+{
+  "EdiEngine": {
+    "LicenseKey": "ваш_jwt_ключ_лицензии"
+  }
+}
+```
+
+```csharp
+// ASP.NET Core
+EdiEngineConfiguration.ConfigureLicensing(builder.Configuration);
+
+// Консольное приложение
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .Build();
+EdiEngineConfiguration.ConfigureLicensing(configuration);
+```
+
+2. **Переменная окружения** `CROSS_EDIENGINE_LICENSE_KEY`
+
+3. Без ключа — разрешено для разработки и тестирования; в production требуется лицензия. Подробнее: https://peshkov.biz
+
 ## How To's
 
 Please use [Wiki](https://github.com/denis-peshkov/Cross.EdiEngine/wiki) for documentation and usage examples.

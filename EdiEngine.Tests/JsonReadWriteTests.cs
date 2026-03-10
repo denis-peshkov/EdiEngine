@@ -8,7 +8,7 @@ public class JsonReadWriteTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.940.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
             //Write Json
@@ -17,7 +17,7 @@ public class JsonReadWriteTests
             JsonSerializer.Serialize(b.Interchanges[0].Groups[0].Transactions[0]);
 
             //or use writer to write to string or stream
-            JsonDataWriter w  = new JsonDataWriter();
+            JsonDataWriter w = new JsonDataWriter(TestUtils.ServiceProvider);
             string str = w.WriteToString(b);
             Stream stream = w.WriteToStream(b);
 
@@ -63,10 +63,10 @@ public class JsonReadWriteTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.856.Crossdock.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
-            JsonDataWriter jsonWriter = new JsonDataWriter();
+            JsonDataWriter jsonWriter = new JsonDataWriter(TestUtils.ServiceProvider);
             jsonWriter.WriteToString(b);
         }
     }
@@ -94,10 +94,10 @@ public class JsonReadWriteTests
     {
         using (Stream s = GetType().Assembly.GetManifestResourceStream("EdiEngine.Tests.TestData.850.Composite.SLN.OK.edi"))
         {
-            EdiDataReader r = new EdiDataReader();
+            EdiDataReader r = new EdiDataReader(TestUtils.ServiceProvider);
             EdiBatch b = r.FromStream(s);
 
-            JsonDataWriter jsonWriter = new JsonDataWriter();
+            JsonDataWriter jsonWriter = new JsonDataWriter(TestUtils.ServiceProvider);
             jsonWriter.WriteToString(b);
         }
     }

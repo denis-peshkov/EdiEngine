@@ -1,23 +1,27 @@
-﻿namespace EdiEngine;
+namespace EdiEngine;
 
 public class EdiDataReader
 {
+    private readonly IServiceProvider _serviceProvider;
+
     private const string MissingStandardFallbackVersion = "004010";
 
     private string _elementSeparator;
     private string _segmentSeparator;
     private string _compositeSeparator;
 
-    private readonly string _externalMapsAssemblymName;
-    public EdiDataReader()
+    private readonly string? _externalMapsAssemblymName;
+
+    public EdiDataReader(IServiceProvider serviceProvider)
     {
+        _serviceProvider = serviceProvider;
     }
 
-    public EdiDataReader(string apsAssemblymName)
+    public EdiDataReader(string apsAssemblymName, IServiceProvider serviceProvider)
     {
         _externalMapsAssemblymName = apsAssemblymName;
+        _serviceProvider = serviceProvider;
     }
-
 
     public EdiBatch FromStream(Stream fileContent)
     {
@@ -32,6 +36,8 @@ public class EdiDataReader
 
     public EdiBatch FromString(string fileContent)
     {
+        _serviceProvider.CheckLicense();
+
         if (string.IsNullOrWhiteSpace(fileContent))
             throw new EdiParsingException("Empty File");
 

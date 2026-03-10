@@ -4,7 +4,8 @@ public class XmlDataWriter : DataWriter
 {
     private readonly XmlWriterSettings _settings;
 
-    public XmlDataWriter()
+    public XmlDataWriter(IServiceProvider serviceProvider)
+        : base(serviceProvider)
     {
         _settings = new XmlWriterSettings
         {
@@ -14,13 +15,16 @@ public class XmlDataWriter : DataWriter
         };
     }
 
-    public XmlDataWriter(XmlWriterSettings settings)
+    public XmlDataWriter(XmlWriterSettings settings, IServiceProvider serviceProvider)
+        : base(serviceProvider)
     {
         _settings = settings;
     }
 
     public override string WriteToString(EdiBatch batch)
     {
+        _serviceProvider.CheckLicense();
+
         using (Stream s = WriteToStream(batch))
         {
             using (StreamReader r = new StreamReader(s, _settings.Encoding))
@@ -32,6 +36,8 @@ public class XmlDataWriter : DataWriter
 
     public override Stream WriteToStream(EdiBatch batch)
     {
+        _serviceProvider.CheckLicense();
+
         Stream s = new MemoryStream();
 
         XmlWriter w = XmlWriter.Create(s, _settings);

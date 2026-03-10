@@ -7,6 +7,7 @@ global using System.Linq;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using EdiEngine;
+global using EdiEngine.Licensing;
 global using EdiEngine.Runtime;
 global using EdiEngine.Validation;
 global using EdiEngine.Xml;
